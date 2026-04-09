@@ -46,6 +46,43 @@
         <item name="android:background">@drawable/bg_title_btn</item>
     </style>
 
+    <style name="button_red">
+        <item name="android:textSize">@dimen/text_14</item>
+        <item name="android:textColor">@color/button_red_text</item>
+        <item name="android:background">@drawable/button_red_frame</item>
+    </style>
+
+    <style name="explain_text_3">
+        <item name="android:textSize">@dimen/add_content_text_12</item>
+        <item name="android:textColor">@color/explain_text_color_2</item>
+        <item name="android:background">@color/explain_text_background</item>
+    </style>
+
+    <style name="main_menu">
+        <item name="android:textSize">@dimen/text_10</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/button_red_frame</item>
+        <item name="android:layout_width">@dimen/dp_80</item>
+        <item name="android:layout_height">@dimen/dp_65</item>
+    </style>
+
+    <style name="main_menu_left" parent="@style/main_menu">
+        <item name="android:layout_marginTop">@dimen/dp_10</item>
+        <item name="android:layout_marginStart">@dimen/dp_10</item>
+        <item name="android:layout_marginEnd">@dimen/dp_5</item>
+    </style>
+
+    <style name="make_etc_table_title">
+        <item name="android:textSize">@dimen/title_text_14</item>
+        <item name="android:textColor">@color/table_title</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="menu_button" parent="@style/button_red">
+        <item name="android:layout_marginLeft">@dimen/dp_13</item>
+        <item name="android:layout_marginTop">@dimen/dp_15</item>
+    </style>
+
     <style name="PopupWindowAnimation" parent="@android:style/Animation">
         <item name="android:windowEnterAnimation">@anim/in_bottomtotop</item>
         <item name="android:windowExitAnimation">@anim/out_toptobottom</item>
@@ -54,5 +91,31 @@
     <style name="ProgressAnim" parent="@android:style/Animation">
         <item name="android:windowEnterAnimation">@anim/progress_in</item>
         <item name="android:windowExitAnimation">@anim/progress_out</item>
+    </style>
+    <style name="button_1">
+        <item name="android:textSize">@dimen/content_text_14</item>
+        <item name="android:textColor">@color/button_text_white</item>
+        <item name="android:background">@drawable/button_long_frame</item>
+    </style>
+
+    <style name="table_grid_text">
+        <item name="android:textSize">@dimen/title_text_12</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/table_title</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginTop">@dimen/dp_1</item>
+        <item name="android:layout_marginRight">@dimen/dp_1</item>
+    </style>
+
+    <style name="text_select">
+        <item name="android:textSize">@dimen/content_text_14</item>
+        <item name="android:textColor">@color/text_select_color</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@drawable/color_text</item>
+    </style>
+
+    <style name="text_ui_hint">
+        <item name="android:textSize">@dimen/content_text_14</item>
+        <item name="android:textColor">@color/explain_text_color_2</item>
     </style>
 </resources>

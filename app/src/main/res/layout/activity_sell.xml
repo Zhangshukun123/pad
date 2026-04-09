@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white">
+
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/title_bar_high"
+        app:layout_constraintTop_toTopOf="parent"
+        layout="@layout/app_title" />
+
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cl_title"
+        layout="@layout/app_user_info" />
+
+    <TextView
+        android:id="@+id/asa_tv_sell_type_tip"
+        style="@style/text_ui"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_5"
+        android:text="@string/sell_type_tip"
+        app:layout_constraintBottom_toBottomOf="@id/asa_sp_sell_type"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/asa_sp_sell_type" />
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/asa_sp_sell_type"
+        style="@style/text_select"
+        android:layout_width="0.0dip"
+        android:layout_height="@dimen/spinner_high"
+        android:layout_marginTop="@dimen/dp_5"
+        android:layout_marginEnd="@dimen/dp_5"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/asa_tv_sell_type_tip"
+        app:layout_constraintTop_toBottomOf="@id/cl_user" />
+
+    <TextView
+        android:id="@+id/asa_tv_sell_count_tip"
+        style="@style/text_ui"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sell_count_tip"
+        app:layout_constraintBottom_toBottomOf="@id/asa_et_sell_count"
+        app:layout_constraintStart_toStartOf="@id/asa_tv_sell_type_tip"
+        app:layout_constraintTop_toTopOf="@id/asa_et_sell_count" />
+
+    <com.ayma.base.widget.ClearEditText
+        android:id="@+id/asa_et_sell_count"
+        style="@style/edittext_1"
+        android:layout_width="0.0dip"
+        android:layout_height="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_5"
+        android:layout_marginEnd="@dimen/dp_5"
+        android:digits="0123456789"
+        android:inputType="number"
+        android:maxLines="1"
+        android:paddingLeft="@dimen/dp_10"
+        android:text="1"
+        app:layout_constraintEnd_toStartOf="@id/asa_cb_cash_return"
+        app:layout_constraintStart_toStartOf="@id/asa_sp_sell_type"
+        app:layout_constraintTop_toBottomOf="@id/asa_sp_sell_type" />
+
+    <CheckBox
+        android:id="@+id/asa_cb_cash_return"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_38"
+        android:layout_marginEnd="@dimen/dp_5"
+        android:buttonTint="@color/deep_gray"
+        android:checked="false"
+        android:text="@string/sell_cash_return"
+        android:textColor="@color/black_A9"
+        android:textSize="@dimen/text_12"
+        app:layout_constraintBottom_toBottomOf="@id/asa_et_sell_count"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/asa_et_sell_count" />
+
+    <TextView
+        android:id="@+id/asa_tv_scan_tip"
+        style="@style/text_ui"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sell_scan_tip"
+        app:layout_constraintBottom_toBottomOf="@id/asa_et_scanning_code"
+        app:layout_constraintStart_toStartOf="@id/asa_tv_sell_count_tip"
+        app:layout_constraintTop_toTopOf="@id/asa_et_scanning_code" />
+
+    <com.ayma.base.widget.ClearEditText
+        android:id="@+id/asa_et_scanning_code"
+        style="@style/edittext_1"
+        android:layout_width="0.0dip"
+        android:layout_height="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_5"
+        android:layout_marginEnd="@dimen/dp_5"
+        android:hint="@string/sell_scan_hint"
+        android:imeOptions="actionDone"
+        android:maxLines="1"
+        android:paddingLeft="@dimen/dp_10"
+        android:singleLine="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/asa_et_sell_count"
+        app:layout_constraintTop_toBottomOf="@id/asa_et_sell_count" />
+
+    <Button
+        android:id="@+id/asa_btn_select_goods"
+        style="@style/button_1"
+        android:layout_width="@dimen/dp_70"
+        android:layout_height="@dimen/button_high"
+        android:layout_marginTop="@dimen/dp_8"
+        android:text="@string/sell_select_goods"
+        app:layout_constraintStart_toStartOf="@id/asa_tv_sell_type_tip"
+        app:layout_constraintTop_toBottomOf="@id/asa_et_scanning_code" />
+
+    <Button
+        android:id="@+id/asa_btn_delete_all"
+        style="@style/button_1"
+        android:layout_width="@dimen/dp_70"
+        android:layout_height="@dimen/button_high"
+        android:layout_marginStart="@dimen/dp_5"
+        android:text="@string/sell_delete_all"
+        app:layout_constraintBottom_toBottomOf="@id/asa_btn_select_goods"
+        app:layout_constraintStart_toEndOf="@id/asa_btn_select_goods"
+        app:layout_constraintTop_toTopOf="@id/asa_btn_select_goods" />
+
+    <Button
+        android:id="@+id/asa_btn_online_camera"
+        style="@style/button_1"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/button_high"
+        android:layout_marginStart="@dimen/dp_5"
+        android:drawableLeft="@mipmap/ic_scan_small"
+        android:paddingLeft="@dimen/dp_2"
+        android:paddingRight="@dimen/dp_3"
+        android:text="@string/sell_camera_pay"
+        android:textSize="@dimen/text_12"
+        app:layout_constraintBottom_toBottomOf="@id/asa_btn_select_goods"
+        app:layout_constraintStart_toEndOf="@id/asa_btn_delete_all"
+        app:layout_constraintTop_toTopOf="@id/asa_btn_select_goods" />
+
+    <Button
+        android:id="@+id/asa_btn_online_pay_laser"
+        style="@style/button_1"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/button_high"
+        android:layout_marginStart="@dimen/dp_5"
+        android:drawableLeft="@mipmap/ic_laser_small"
+        android:paddingLeft="@dimen/dp_3"
+        android:paddingRight="@dimen/dp_3"
+        android:text="@string/sell_laser_pay"
+        android:textSize="@dimen/text_12"
+        app:layout_constraintBottom_toBottomOf="@id/asa_btn_select_goods"
+        app:layout_constraintEnd_toEndOf="@id/asa_sp_sell_type"
+        app:layout_constraintStart_toEndOf="@id/asa_btn_online_camera"
+        app:layout_constraintTop_toTopOf="@id/asa_btn_select_goods" />
+
+    <TextView
+        android:id="@+id/asa_tv_goods_total_price"
+        style="@style/text_ui"
+        android:layout_width="0.0dip"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
+        android:layout_marginEnd="@dimen/dp_5"
+        android:gravity="end"
+        android:text="@string/sell_total_empty"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/asa_btn_select_goods" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/asa_cl_list_head"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
+        android:background="@color/table_view_background"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/asa_tv_goods_total_price">
+
+        <TextView
+            android:id="@+id/asa_tv_goods_name_hint"
+            style="@style/table_grid_text"
+            android:layout_width="0.0dip"
+            android:layout_height="@dimen/table_grid_igh"
+            android:background="@color/table_content_background2"
+            android:text="@string/sell_header_goods_name"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/asa_tv_goods_count_hint"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/asa_tv_goods_count_hint"
+            style="@style/table_grid_text"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/table_grid_igh"
+            android:background="@color/table_content_background2"
+            android:text="@string/sell_header_goods_count"
+            android:textColor="@color/red"
+            app:layout_constraintLeft_toRightOf="@id/asa_tv_goods_name_hint"
+            app:layout_constraintRight_toLeftOf="@id/asa_tv_goods_price_hint"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/asa_tv_goods_price_hint"
+            style="@style/table_grid_text"
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/table_grid_igh"
+            android:background="@color/table_content_background2"
+            android:text="@string/sell_header_goods_price"
+            app:layout_constraintRight_toLeftOf="@id/asa_tv_goods_type_hint"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/asa_tv_goods_type_hint"
+            style="@style/table_grid_text"
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/table_grid_igh"
+            android:background="@color/table_content_background2"
+            android:text="@string/sell_header_goods_type"
+            app:layout_constraintRight_toLeftOf="@id/asa_tv_goods_code_hint"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/asa_tv_goods_code_hint"
+            style="@style/table_grid_text"
+            android:layout_width="@dimen/dp_70"
+            android:layout_height="@dimen/table_grid_igh"
+            android:background="@color/table_content_background2"
+            android:text="@string/sell_header_goods_code"
+            app:layout_constraintRight_toLeftOf="@id/asa_tv_goods_amount_hint"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/asa_tv_goods_amount_hint"
+            style="@style/table_grid_text"
+            android:layout_width="@dimen/dp_56"
+            android:layout_height="@dimen/table_grid_igh"
+            android:background="@color/table_content_background2"
+            android:text="@string/sell_header_goods_amount"
+            android:textColor="@color/red"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/asa_rv_goods"
+        android:layout_width="fill_parent"
+        android:layout_height="0.0dip"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/asa_cl_list_head" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

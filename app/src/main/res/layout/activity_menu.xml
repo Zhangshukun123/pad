@@ -1,84 +1,362 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical">
+    android:id="@+id/root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white">
 
     <include
         layout="@layout/app_title"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="@dimen/title_bar_high"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <include
+        layout="@layout/app_user_info"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_24"
-        android:layout_marginTop="@dimen/dp_24"
-        android:layout_marginEnd="@dimen/dp_24"
-        android:background="@color/menu_card_background"
-        android:orientation="vertical"
-        android:padding="@dimen/dp_16">
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cl_title" />
 
-        <TextView
-            android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/am_tv_tips"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/yellow_dark"
+        android:gravity="center"
+        android:paddingLeft="@dimen/dp_5"
+        android:paddingRight="@dimen/dp_5"
+        android:text="您当前未签到或已退乘，无法进行销售、退款操作&#10;如您已签到，请点击此处更新状态"
+        android:textSize="@dimen/text_12"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/cl_user" />
+
+    <TextView
+        android:id="@+id/am_tv_sale_counter_tip"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/cyan"
+        android:gravity="center"
+        android:paddingLeft="@dimen/dp_5"
+        android:paddingRight="@dimen/dp_5"
+        android:text="您有未处理的柜台销售订单，请及时查看处理"
+        android:textSize="@dimen/text_12"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/am_tv_tips" />
+
+    <TextView
+        android:id="@+id/am_tv_sale_12306_tip"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/yellow1"
+        android:gravity="center"
+        android:paddingLeft="@dimen/dp_5"
+        android:paddingRight="@dimen/dp_5"
+        android:text="您有未处理的12306预售订单，请及时查看处理"
+        android:textSize="@dimen/text_12"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/am_tv_sale_counter_tip" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0.0dip"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/am_tv_sale_12306_tip">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/menu_welcome"
-            android:textColor="@color/light_black"
-            android:textSize="@dimen/text_14" />
+            android:paddingBottom="@dimen/dp_10">
 
-        <TextView
-            android:id="@+id/menu_tv_user_code"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_16"
-            android:textColor="@color/light_black"
-            android:textSize="@dimen/text_14"
-            android:textStyle="bold" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/am_cl_sell"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_5"
+                android:layout_marginTop="@dimen/dp_5"
+                android:layout_marginRight="@dimen/dp_5"
+                android:visibility="gone"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/menu_tv_user_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_8"
-            android:textColor="@color/light_black"
-            android:textSize="@dimen/text_14" />
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/am_fb_sale"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:background="@drawable/bg_gray_border_round"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/dp_10"
+                    app:alignContent="flex_start"
+                    app:alignItems="stretch"
+                    app:flexDirection="row"
+                    app:flexWrap="wrap"
+                    app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/menu_tv_train_no"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_8"
-            android:textColor="@color/light_black"
-            android:textSize="@dimen/text_14" />
+                    <Button android:id="@+id/am_btn_common_sell" style="@style/menu_button" android:layout_width="@dimen/menu_btn_width" android:layout_height="@dimen/button_long_high" android:text="@string/menu_sell_simple" android:visibility="gone" />
+                    <Button android:id="@+id/am_btn_vip_largess" style="@style/menu_button" android:layout_width="@dimen/menu_btn_width" android:layout_height="@dimen/button_long_high" android:text="@string/menu_sell_vip" android:visibility="gone" />
+                    <Button android:id="@+id/am_btn_sell_counter" style="@style/menu_button" android:layout_width="@dimen/menu_btn_width" android:layout_height="@dimen/button_long_high" android:text="@string/menu_sell_counter" android:visibility="gone" />
+                    <Button android:id="@+id/am_btn_work_meal_write_off" style="@style/menu_button" android:layout_width="@dimen/menu_btn_width" android:layout_height="@dimen/button_long_high" android:text="@string/menu_sell_work_meal_write_off" android:visibility="gone" />
+                    <Button android:id="@+id/am_btn_goods_option" style="@style/menu_button" android:layout_width="@dimen/menu_btn_width" android:layout_height="@dimen/button_long_high" android:text="@string/menu_goods_option" android:visibility="gone" />
+                </com.google.android.flexbox.FlexboxLayout>
 
-        <TextView
-            android:id="@+id/menu_tv_team_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_8"
-            android:textColor="@color/light_black"
-            android:textSize="@dimen/text_14" />
+                <TextView
+                    android:id="@+id/textView16"
+                    style="@style/default_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:background="@drawable/bg_white_round"
+                    android:paddingLeft="@dimen/dp_5"
+                    android:paddingRight="@dimen/dp_5"
+                    android:text="@string/menu_section_sales"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/menu_tv_road_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_8"
-            android:textColor="@color/light_black"
-            android:textSize="@dimen/text_14" />
-    </LinearLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/am_cl_order"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_5"
+                android:layout_marginTop="@dimen/dp_5"
+                android:layout_marginRight="@dimen/dp_5"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/am_cl_sell">
 
-    <Button
-        android:id="@+id/menu_btn_logout"
-        style="@style/button_long"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/button_long_high"
-        android:layout_marginStart="@dimen/dp_24"
-        android:layout_marginTop="@dimen/dp_24"
-        android:layout_marginEnd="@dimen/dp_24"
-        android:text="@string/menu_logout" />
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/am_fb_order"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:background="@drawable/bg_gray_border_round"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/dp_10"
+                    app:alignContent="flex_start"
+                    app:alignItems="stretch"
+                    app:flexDirection="row"
+                    app:flexWrap="wrap"
+                    app:layout_constraintTop_toTopOf="parent">
 
-</LinearLayout>
+                    <Button android:id="@+id/am_btn_online_return" style="@style/menu_button" android:layout_width="@dimen/menu_btn_width" android:layout_height="@dimen/button_long_high" android:text="@string/menu_online_return" android:visibility="gone" />
+                    <Button android:id="@+id/am_btn_update_order_pay_statue" style="@style/menu_button" android:layout_width="@dimen/menu_btn_width" android:layout_height="@dimen/button_long_high" android:text="@string/menu_update_order_pay_statue" android:visibility="gone" />
+                    <Button android:id="@+id/am_btn_invoicing" style="@style/menu_button" android:layout_width="@dimen/menu_btn_width" android:layout_height="@dimen/button_long_high" android:text="@string/menu_invoicing" android:visibility="gone" />
+                </com.google.android.flexbox.FlexboxLayout>
+
+                <TextView
+                    android:id="@+id/am_tv_order_hint"
+                    style="@style/default_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:background="@drawable/bg_white_round"
+                    android:paddingLeft="@dimen/dp_5"
+                    android:paddingRight="@dimen/dp_5"
+                    android:text="@string/menu_section_order"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_query_sell"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_5"
+                android:layout_marginTop="@dimen/dp_5"
+                android:layout_marginRight="@dimen/dp_5"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/am_cl_order">
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/am_fb_query_sell"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:background="@drawable/bg_gray_border_round"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/dp_10"
+                    app:alignContent="flex_start"
+                    app:alignItems="stretch"
+                    app:flexDirection="row"
+                    app:flexWrap="wrap"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <Button android:id="@+id/am_btn_sell_table" style="@style/menu_button" android:layout_width="@dimen/menu_btn_width" android:layout_height="@dimen/button_long_high" android:text="@string/menu_sell_analysis" android:visibility="gone" />
+                    <Button android:id="@+id/am_btn_query_sell_detail" style="@style/menu_button" android:layout_width="@dimen/menu_btn_width" android:layout_height="@dimen/button_long_high" android:text="@string/menu_sell_detail" android:visibility="gone" />
+                    <Button android:id="@+id/am_btn_query_bill" style="@style/menu_button" android:layout_width="@dimen/menu_btn_width" android:layout_height="@dimen/button_long_high" android:text="@string/menu_query_bill" android:visibility="gone" />
+                    <Button android:id="@+id/am_btn_query_order" style="@style/menu_button" android:layout_width="@dimen/menu_btn_width" android:layout_height="@dimen/button_long_high" android:text="@string/menu_query_order" android:visibility="gone" />
+                    <Button android:id="@+id/am_btn_query_sell_getmoney" style="@style/menu_button" android:layout_width="@dimen/menu_btn_width" android:layout_height="@dimen/button_long_high" android:text="@string/menu_query_sell_get_money" android:visibility="gone" />
+                </com.google.android.flexbox.FlexboxLayout>
+
+                <TextView
+                    android:id="@+id/tv_query_sell_hint"
+                    style="@style/default_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:background="@drawable/bg_white_round"
+                    android:paddingLeft="@dimen/dp_5"
+                    android:paddingRight="@dimen/dp_5"
+                    android:text="@string/menu_section_query_sales"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/am_cl_query_other"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_5"
+                android:layout_marginTop="@dimen/dp_5"
+                android:layout_marginRight="@dimen/dp_5"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/cl_query_sell">
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/am_fb_query_other"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:background="@drawable/bg_gray_border_round"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/dp_10"
+                    app:alignContent="flex_start"
+                    app:alignItems="stretch"
+                    app:flexDirection="row"
+                    app:flexWrap="wrap"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <Button android:id="@+id/am_btn_query_warehouse" style="@style/menu_button" android:layout_width="@dimen/menu_btn_width" android:layout_height="@dimen/button_long_high" android:text="@string/menu_query_warehouse_stock" android:visibility="gone" />
+                    <Button android:id="@+id/am_btn_query_etc_all" style="@style/menu_button" android:layout_width="@dimen/menu_btn_width" android:layout_height="@dimen/button_long_high" android:text="@string/menu_query_all_bill" android:visibility="gone" />
+                    <Button android:id="@+id/am_btn_query_table" style="@style/menu_button" android:layout_width="@dimen/menu_btn_width" android:layout_height="@dimen/button_long_high" android:text="@string/menu_query_pick_up" android:visibility="gone" />
+                </com.google.android.flexbox.FlexboxLayout>
+
+                <TextView
+                    android:id="@+id/am_tv_query_hint"
+                    style="@style/default_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:background="@drawable/bg_white_round"
+                    android:paddingLeft="@dimen/dp_5"
+                    android:paddingRight="@dimen/dp_5"
+                    android:text="@string/menu_section_query_other"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/am_cl_receipt"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_5"
+                android:layout_marginTop="@dimen/dp_5"
+                android:layout_marginRight="@dimen/dp_5"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/am_cl_query_other">
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/am_fb_receipt"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:background="@drawable/bg_gray_border_round"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/dp_10"
+                    app:alignContent="flex_start"
+                    app:alignItems="stretch"
+                    app:flexDirection="row"
+                    app:flexWrap="wrap"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <Button android:id="@+id/am_btn_make_car_add" style="@style/menu_button" android:layout_width="@dimen/menu_btn_width" android:layout_height="@dimen/button_long_high" android:text="@string/menu_require_bill" android:visibility="gone" />
+                    <Button android:id="@+id/am_btn_make_quit_car" style="@style/menu_button" android:layout_width="@dimen/menu_btn_width" android:layout_height="@dimen/button_long_high" android:text="@string/menu_scrapped" android:visibility="gone" />
+                    <Button android:id="@+id/am_btn_make_add_yidi" style="@style/menu_button" android:layout_width="@dimen/menu_btn_width" android:layout_height="@dimen/button_long_high" android:text="@string/menu_offsite_add" android:visibility="gone" />
+                    <Button android:id="@+id/am_btn_make_quit_class" style="@style/menu_button" android:layout_width="@dimen/menu_btn_width" android:layout_height="@dimen/button_long_high" android:text="@string/menu_quit_bill" android:visibility="gone" />
+                    <Button android:id="@+id/am_btn_team_handover" style="@style/menu_button" android:layout_width="@dimen/menu_btn_width" android:layout_height="@dimen/button_long_high" android:text="@string/menu_team_handover" android:visibility="gone" />
+                    <TextView android:id="@+id/am_btn_sell_12306" style="@style/menu_button" android:layout_width="@dimen/menu_btn_width" android:layout_height="@dimen/button_long_high" android:gravity="center" android:text="@string/menu_sell_12306" android:visibility="gone" />
+                    <Button android:id="@+id/am_btn_quick_handover" style="@style/menu_button" android:layout_width="@dimen/menu_btn_width" android:layout_height="@dimen/button_long_high" android:text="@string/menu_quick_handover" android:visibility="gone" />
+                </com.google.android.flexbox.FlexboxLayout>
+
+                <TextView
+                    android:id="@+id/am_tv_receipt_hint"
+                    style="@style/default_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:background="@drawable/bg_white_round"
+                    android:paddingLeft="@dimen/dp_5"
+                    android:paddingRight="@dimen/dp_5"
+                    android:text="@string/menu_section_receipt"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_other"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_5"
+                android:layout_marginTop="@dimen/dp_5"
+                android:layout_marginRight="@dimen/dp_5"
+                app:layout_constraintTop_toBottomOf="@id/am_cl_receipt">
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/am_fb_other"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:background="@drawable/bg_gray_border_round"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/dp_5"
+                    android:paddingBottom="@dimen/dp_10"
+                    android:visibility="gone"
+                    app:alignContent="flex_start"
+                    app:alignItems="stretch"
+                    app:flexDirection="row"
+                    app:flexWrap="wrap"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <Button android:id="@+id/am_btn_down_common_data" style="@style/menu_button" android:layout_width="@dimen/menu_btn_width" android:layout_height="@dimen/button_long_high" android:text="@string/menu_download_base" />
+                    <Button android:id="@+id/am_btn_down_table_date" style="@style/menu_button" android:layout_width="@dimen/menu_btn_width" android:layout_height="@dimen/button_long_high" android:text="@string/menu_download_pick_up" />
+                    <Button android:id="@+id/am_btn_coming_upload" style="@style/menu_button" android:layout_width="@dimen/menu_btn_width" android:layout_height="@dimen/button_long_high" android:text="@string/menu_pending_upload" />
+                    <Button android:id="@+id/am_btn_revise_password" style="@style/menu_button" android:layout_width="@dimen/menu_btn_width" android:layout_height="@dimen/button_long_high" android:text="@string/menu_change_pwd" />
+                    <Button android:id="@+id/am_btn_take_off" style="@style/menu_button" android:layout_width="@dimen/menu_btn_width" android:layout_height="@dimen/button_long_high" android:text="@string/menu_take_off" android:visibility="invisible" />
+                    <Button android:id="@+id/am_btn_quitsystem" style="@style/menu_button" android:layout_width="@dimen/menu_btn_width" android:layout_height="@dimen/button_long_high" android:text="@string/menu_exit" />
+                    <Button android:id="@+id/am_btn_check_update" style="@style/menu_button" android:layout_width="@dimen/menu_btn_width" android:layout_height="@dimen/button_long_high" android:text="@string/menu_check_update" />
+                    <Button android:id="@+id/am_btn_gtpc" style="@style/menu_button" android:layout_width="@dimen/menu_btn_width" android:layout_height="@dimen/button_long_high" android:text="@string/menu_gtpc" />
+                </com.google.android.flexbox.FlexboxLayout>
+
+                <TextView
+                    android:id="@+id/am_tv_fold_other"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_12"
+                    android:background="@drawable/bg_white_round"
+                    android:clickable="true"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/dp_20"
+                    android:paddingRight="@dimen/dp_10"
+                    android:text="@string/menu_other_expand"
+                    android:drawableRight="@mipmap/ic_expanded"
+                    app:layout_constraintLeft_toRightOf="@id/am_tv_other_hint"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/am_tv_other_hint"
+                    style="@style/default_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:background="@drawable/bg_white_round"
+                    android:paddingLeft="@dimen/dp_5"
+                    android:paddingRight="@dimen/dp_5"
+                    android:text="@string/menu_section_other"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

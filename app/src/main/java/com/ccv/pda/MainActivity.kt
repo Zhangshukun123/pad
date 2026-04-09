@@ -1,15 +1,18 @@
 package com.ccv.pda
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.PopupWindow
 import android.widget.TextView
 import android.widget.Toast
@@ -20,23 +23,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ayma.base.widget.ClearEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.qrcode.QRCodeWriter
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class MainActivity : AppCompatActivity() {
-
-    private val fakeUsers = listOf(
-        FakeUser("10001", "张三", "123456", "SN-CCV-10001"),
-        FakeUser("10002", "李四", "888888", "SN-CCV-10002"),
-        FakeUser("20001", "仓管测试员", "admin123", "SN-CCV-20001")
-    )
-
-    private val fakeCrossRoads = listOf(
-        FakeCrossRoad("CR-001", "DJ5902", "动高1组", "20260408"),
-        FakeCrossRoad("CR-002", "DJ7575", "动高1组", "20260407"),
-        FakeCrossRoad("CR-003", "G9199", "动高1组", "20260406"),
-        FakeCrossRoad("CR-004", "G7925A", "动高1组", "20260405")
-    )
 
     private lateinit var titleView: TextView
     private lateinit var leftView: TextView
@@ -48,21 +40,29 @@ class MainActivity : AppCompatActivity() {
     private lateinit var passwordLayout: TextInputLayout
     private lateinit var loginButton: Button
     private lateinit var snButton: Button
+    private lateinit var settingsStore: FakePdaSettingsStore
 
     private var selectCrossRoadPopup: PopupWindow? = null
     private var loginLoadingDialog: AlertDialog? = null
+    private var qrCodeDialog: AlertDialog? = null
+    private var qrCodeDialogView: View? = null
+    private var cachedDeviceSn: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        settingsStore = FakePdaSettingsStore(this).also { it.ensureDefaults(this) }
         bindViews()
         initTitleBar()
         initVersion()
         initListeners()
+        initDefaultLoginUser()
+        preloadDeviceSn()
     }
 
     override fun onDestroy() {
         loginLoadingDialog?.dismiss()
+        qrCodeDialog?.dismiss()
         dismissSelectCrossRoadPopup()
         super.onDestroy()
     }
@@ -130,17 +130,34 @@ class MainActivity : AppCompatActivity() {
         }
 
         snButton.setOnClickListener {
-            val user = findUser(userCodeView.text?.toString())
-            if (user == null) {
-                toast(getString(R.string.toast_input_valid_employee_code))
-            } else {
-                AlertDialog.Builder(this)
-                    .setTitle(R.string.dialog_sn_code_title)
-                    .setMessage(user.snCode)
-                    .setPositiveButton(R.string.action_confirm, null)
-                    .show()
-            }
+            showSnCode()
         }
+    }
+
+    private fun initDefaultLoginUser() {
+        val defaultLoginUser = FakeLoginDataRepository.defaultLoginUser
+        userCodeView.setText(defaultLoginUser.employeeCode)
+        passwordView.setText(defaultLoginUser.password)
+        userNameView.text = defaultLoginUser.userName
+        userCodeView.setSelection(userCodeView.text?.length ?: 0)
+        passwordView.setSelection(passwordView.text?.length ?: 0)
+    }
+
+    private fun preloadDeviceSn() {
+        val serialNumber = readSystemDeviceSn()
+        if (!DeviceSnUtil.isSnEmpty(serialNumber)) {
+            cacheDeviceSn(serialNumber)
+            return
+        }
+        DeviceSnUtil.getSerialNumberAsync(
+            applicationContext,
+            onSuccess = { serial ->
+                cacheDeviceSn(resolveAsyncDeviceSn(serial))
+            },
+            onError = {
+                cacheDeviceSn(resolveAsyncDeviceSn(""))
+            }
+        )
     }
 
     private fun performFakeLogin() {
@@ -162,7 +179,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun handleLoginSuccess(user: FakeUser) {
         showLoginLoading {
-            val crossRoads = fakeCrossRoadsFor(user)
+            val crossRoads = FakeLoginDataRepository.crossRoadsFor(user)
             if (crossRoads.size == 1) {
                 showCrossRoadConfirmDialog(user, crossRoads.first())
             } else {
@@ -223,11 +240,22 @@ class MainActivity : AppCompatActivity() {
             .setNeutralButton(R.string.route_action_update) { dialog, _ ->
                 dialog.dismiss()
                 toast(getString(R.string.toast_cross_road_updated))
-                showSelectCrossRoadPopup(user, fakeCrossRoadsFor(user))
+                showSelectCrossRoadPopup(user, FakeLoginDataRepository.crossRoadsFor(user))
             }
             .setPositiveButton(R.string.action_confirm) { dialog, _ ->
                 dialog.dismiss()
-                openMenu(user, route)
+                showDownloadPickingListDialog(
+                    onSkipDownload = {
+                        toast(getString(R.string.toast_download_picking_list_skipped))
+                        openMenu(user, route)
+                    },
+                    onDownload = {
+                        fakeDownloadPickingList {
+                            toast(getString(R.string.toast_download_picking_list_success))
+                            openMenu(user, route)
+                        }
+                    }
+                )
             }
             .show()
     }
@@ -247,33 +275,88 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun showSnCode() {
+        val serialNumber = readAvailableDeviceSn()
+        if (!DeviceSnUtil.isSnEmpty(serialNumber)) {
+            showSnQrCodeDialog(serialNumber)
+            return
+        }
+
+        showLoadingDialog(getString(R.string.sn_loading), null)
+        DeviceSnUtil.getSerialNumberAsync(
+            applicationContext,
+            onSuccess = { serial ->
+                hideLoadingDialog()
+                val finalSn = resolveAsyncDeviceSn(serial)
+                if (DeviceSnUtil.isSnEmpty(finalSn)) {
+                    showSingleNotice(getString(R.string.sn_empty_unable_generate))
+                } else {
+                    showSnQrCodeDialog(finalSn)
+                }
+            },
+            onError = { throwable ->
+                hideLoadingDialog()
+                val finalSn = resolveAsyncDeviceSn("")
+                if (DeviceSnUtil.isSnEmpty(finalSn)) {
+                    showSingleNotice(
+                        getString(
+                            R.string.sn_fetch_failed,
+                            throwable.message ?: getString(R.string.action_reenter)
+                        )
+                    )
+                } else {
+                    showSnQrCodeDialog(finalSn)
+                }
+            }
+        )
+    }
+
     private fun showLoginLoading(onComplete: () -> Unit) {
         loginButton.isEnabled = false
         snButton.isEnabled = false
-
-        val dialog = loginLoadingDialog ?: AlertDialog.Builder(this)
-            .setView(layoutInflater.inflate(R.layout.dialog_login_loading, null, false))
-            .setCancelable(false)
-            .create()
-            .also {
-                it.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                it.window?.attributes = it.window?.attributes?.apply {
-                    windowAnimations = R.style.ProgressAnim
-                }
-                loginLoadingDialog = it
-            }
-
-        if (!isFinishing && !isDestroyed && !dialog.isShowing) {
-            dialog.show()
-        }
+        showLoadingDialog(
+            message = getString(R.string.login_loading),
+            hint = getString(R.string.login_loading_hint)
+        )
 
         loginButton.postDelayed({
             if (isFinishing || isDestroyed) {
                 return@postDelayed
             }
-            dialog.dismiss()
+            hideLoadingDialog()
             loginButton.isEnabled = true
             snButton.isEnabled = true
+            onComplete()
+        }, 650)
+    }
+
+    private fun showDownloadPickingListDialog(
+        onSkipDownload: () -> Unit,
+        onDownload: () -> Unit
+    ) {
+        AlertDialog.Builder(this)
+            .setMessage(R.string.dialog_download_picking_list)
+            .setNegativeButton(R.string.action_cancel) { dialog, _ ->
+                dialog.dismiss()
+                onSkipDownload()
+            }
+            .setPositiveButton(R.string.action_confirm) { dialog, _ ->
+                dialog.dismiss()
+                onDownload()
+            }
+            .show()
+    }
+
+    private fun fakeDownloadPickingList(onComplete: () -> Unit) {
+        showLoadingDialog(
+            message = getString(R.string.download_picking_list_loading),
+            hint = getString(R.string.download_picking_list_loading_hint)
+        )
+        loginButton.postDelayed({
+            if (isFinishing || isDestroyed) {
+                return@postDelayed
+            }
+            hideLoadingDialog()
             onComplete()
         }, 650)
     }
@@ -282,6 +365,7 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, MenuActivity::class.java).apply {
             putExtra(MenuActivity.EXTRA_EMPLOYEE_CODE, user.employeeCode)
             putExtra(MenuActivity.EXTRA_USER_NAME, user.userName)
+            putExtra(MenuActivity.EXTRA_ROAD_ID, route.roadId)
             putExtra(MenuActivity.EXTRA_TRAIN_NO, route.trainNo)
             putExtra(MenuActivity.EXTRA_TEAM_NAME, route.teamName)
             putExtra(MenuActivity.EXTRA_ROAD_DATE, route.roadDate)
@@ -295,34 +379,128 @@ class MainActivity : AppCompatActivity() {
         selectCrossRoadPopup = null
     }
 
-    private fun fakeCrossRoadsFor(user: FakeUser): List<FakeCrossRoad> {
-        return fakeCrossRoads.map { route ->
-            route.copy(employeeCode = user.employeeCode, employeeName = user.userName)
+    private fun showLoadingDialog(message: String, hint: String?) {
+        val dialog = loginLoadingDialog ?: AlertDialog.Builder(this)
+            .setView(layoutInflater.inflate(R.layout.dialog_login_loading, null, false))
+            .setCancelable(false)
+            .create()
+            .also {
+                it.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                it.window?.attributes = it.window?.attributes?.apply {
+                    windowAnimations = R.style.ProgressAnim
+                }
+                loginLoadingDialog = it
+            }
+
+        dialog.findViewById<TextView>(R.id.tv_loading_title)?.text = message
+        dialog.findViewById<TextView>(R.id.tv_loading_hint)?.apply {
+            text = hint.orEmpty()
+            visibility = if (hint.isNullOrBlank()) View.GONE else View.VISIBLE
+        }
+
+        if (!isFinishing && !isDestroyed && !dialog.isShowing) {
+            dialog.show()
+            dialog.findViewById<TextView>(R.id.tv_loading_title)?.text = message
+            dialog.findViewById<TextView>(R.id.tv_loading_hint)?.apply {
+                text = hint.orEmpty()
+                visibility = if (hint.isNullOrBlank()) View.GONE else View.VISIBLE
+            }
         }
     }
 
+    private fun hideLoadingDialog() {
+        loginLoadingDialog?.dismiss()
+    }
+
+    private fun showSnQrCodeDialog(snCode: String) {
+        cacheDeviceSn(snCode)
+        val qrBitmap = createQrBitmap(snCode)
+        val contentView = qrCodeDialogView ?: layoutInflater
+            .inflate(R.layout.dialog_login_show_qr_code, null, false)
+            .also { qrCodeDialogView = it }
+
+        if (qrCodeDialog == null) {
+            qrCodeDialog = AlertDialog.Builder(this)
+                .setView(contentView)
+                .setCancelable(false)
+                .create()
+        }
+
+        contentView.findViewById<View>(R.id.iv_close).setOnClickListener {
+            qrCodeDialog?.dismiss()
+        }
+        contentView.findViewById<TextView>(R.id.tv_tips).text = snCode
+        contentView.findViewById<ImageView>(R.id.iv_qr_code).setImageBitmap(qrBitmap)
+
+        if (!isFinishing && !isDestroyed) {
+            qrCodeDialog?.show()
+        }
+    }
+
+    private fun createQrBitmap(content: String): Bitmap {
+        val size = TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            220f,
+            resources.displayMetrics
+        ).toInt()
+        val matrix = QRCodeWriter().encode(content, BarcodeFormat.QR_CODE, size, size)
+        val pixels = IntArray(size * size)
+        for (y in 0 until size) {
+            val offset = y * size
+            for (x in 0 until size) {
+                pixels[offset + x] = if (matrix[x, y]) Color.BLACK else Color.WHITE
+            }
+        }
+        return Bitmap.createBitmap(pixels, size, size, Bitmap.Config.ARGB_8888)
+    }
+
+    private fun readAvailableDeviceSn(): String {
+        if (!DeviceSnUtil.isSnEmpty(cachedDeviceSn)) {
+            return cachedDeviceSn
+        }
+        val serialNumber = readSystemDeviceSn()
+        return if (DeviceSnUtil.isSnEmpty(serialNumber)) {
+            ""
+        } else {
+            cacheDeviceSn(serialNumber)
+        }
+    }
+
+    private fun readSystemDeviceSn(): String {
+        return DeviceSnUtil.getSerialNumber(applicationContext).trim()
+    }
+
+    private fun resolveAsyncDeviceSn(serialNumber: String): String {
+        val deviceSn = serialNumber.trim()
+        return when {
+            !DeviceSnUtil.isSnEmpty(deviceSn) -> deviceSn
+            !DeviceSnUtil.isSnEmpty(settingsStore.machineSn) -> settingsStore.machineSn.trim()
+            else -> ""
+        }
+    }
+
+    private fun cacheDeviceSn(snCode: String): String {
+        val finalSn = snCode.trim()
+        if (!DeviceSnUtil.isSnEmpty(finalSn)) {
+            cachedDeviceSn = finalSn
+            settingsStore.machineSn = finalSn
+        }
+        return finalSn
+    }
+
+    private fun showSingleNotice(message: String) {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.dialog_notice)
+            .setMessage(message)
+            .setPositiveButton(R.string.action_confirm, null)
+            .show()
+    }
+
     private fun findUser(employeeCode: String?): FakeUser? {
-        val code = employeeCode?.trim().orEmpty()
-        return fakeUsers.firstOrNull { it.employeeCode == code }
+        return FakeLoginDataRepository.findUser(employeeCode)
     }
 
     private fun toast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }
-
-data class FakeUser(
-    val employeeCode: String,
-    val userName: String,
-    val password: String,
-    val snCode: String
-)
-
-data class FakeCrossRoad(
-    val roadId: String,
-    val trainNo: String,
-    val teamName: String,
-    val roadDate: String,
-    val employeeCode: String = "",
-    val employeeName: String = ""
-)

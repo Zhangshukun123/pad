@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white">
+
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/title_bar_high"
+        app:layout_constraintTop_toTopOf="parent"
+        layout="@layout/app_title" />
+
+    <Button
+        android:id="@+id/ad_btn_all_common_data"
+        style="@style/button_long"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/button_long_high"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginRight="@dimen/dp_24"
+        android:text="@string/download_all_common_data"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cl_title" />
+
+    <Button
+        android:id="@+id/ad_btn_user_data"
+        style="@style/button_long"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/button_long_high"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginRight="@dimen/dp_24"
+        android:text="@string/download_user_data"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ad_btn_all_common_data" />
+
+    <Button
+        android:id="@+id/ad_btn_team_data"
+        style="@style/button_long"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/button_long_high"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginRight="@dimen/dp_24"
+        android:text="@string/download_team_data"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ad_btn_user_data" />
+
+    <Button
+        android:id="@+id/ad_ware_data"
+        style="@style/button_long"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/button_long_high"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginRight="@dimen/dp_24"
+        android:text="@string/download_goods_data"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ad_btn_team_data" />
+
+    <Button
+        android:id="@+id/ad_btn_car_number_data"
+        style="@style/button_long"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/button_long_high"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginRight="@dimen/dp_24"
+        android:text="@string/download_train_data"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ad_ware_data" />
+
+    <Button
+        android:id="@+id/ad_btn_cross_road_data"
+        style="@style/button_long"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/button_long_high"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginRight="@dimen/dp_24"
+        android:text="@string/download_cross_road_data"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ad_btn_car_number_data" />
+
+    <Button
+        android:id="@+id/ad_btn_base_data"
+        style="@style/button_long"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/button_long_high"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginRight="@dimen/dp_24"
+        android:text="@string/download_base_dictionary_data"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ad_btn_cross_road_data" />
+
+    <Button
+        android:id="@+id/ad_btn_permission_data"
+        style="@style/button_long"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/button_long_high"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginRight="@dimen/dp_24"
+        android:text="@string/download_permission_data"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ad_btn_base_data" />
+
+    <Button
+        android:id="@+id/ad_btn_update_sign_status"
+        style="@style/button_long"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/button_long_high"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginRight="@dimen/dp_24"
+        android:text="@string/download_update_sign_status"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ad_btn_permission_data" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
