@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/app_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_bar_high"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_24"
+        android:layout_marginEnd="@dimen/dp_24"
+        android:background="@color/menu_card_background"
+        android:orientation="vertical"
+        android:padding="@dimen/dp_16">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/menu_welcome"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/text_14" />
+
+        <TextView
+            android:id="@+id/menu_tv_user_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/text_14"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/menu_tv_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/text_14" />
+
+        <TextView
+            android:id="@+id/menu_tv_train_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/text_14" />
+
+        <TextView
+            android:id="@+id/menu_tv_team_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/text_14" />
+
+        <TextView
+            android:id="@+id/menu_tv_road_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/text_14" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/menu_btn_logout"
+        style="@style/button_long"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_long_high"
+        android:layout_marginStart="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_24"
+        android:layout_marginEnd="@dimen/dp_24"
+        android:text="@string/menu_logout" />
+
+</LinearLayout>

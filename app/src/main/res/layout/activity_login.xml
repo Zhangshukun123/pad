@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/app_title"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/title_bar_high"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@id/imageView"
+        android:layout_width="fill_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="3.0"
+        android:scaleType="fitXY"
+        android:src="@drawable/login_bg"
+        app:layout_constraintTop_toBottomOf="@id/cl_title" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="6.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@id/al_til_user_code"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_24"
+                android:layout_marginEnd="@dimen/dp_24"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints">
+
+                <com.ayma.base.widget.ClearEditText
+                    android:id="@id/al_et_userNumber"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/edittext_high"
+                    android:hint="@string/hint_employee_code"
+                    android:imeOptions="actionNext"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textSize="@dimen/text_14" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@id/al_til_user_name"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_26"
+                android:layout_marginEnd="@dimen/dp_24"
+                app:layout_constraintTop_toBottomOf="@id/al_til_user_code"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@id/al_tv_userName"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:hint="@string/hint_user_name"
+                    android:maxLines="1"
+                    android:paddingTop="@dimen/dp_5"
+                    android:paddingBottom="@dimen/dp_5"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_14" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@id/al_til_user_pwd"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginEnd="@dimen/dp_24"
+                app:layout_constraintTop_toBottomOf="@id/al_til_user_name"
+                tools:ignore="MissingConstraints">
+
+                <com.ayma.base.widget.ClearEditText
+                    android:id="@id/al_et_userPassword"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/edittext_high"
+                    android:hint="@string/hint_password"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:textSize="@dimen/text_14" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@id/al_btn_login"
+                style="@style/button_long"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/button_long_high"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_28"
+                android:layout_marginEnd="@dimen/dp_24"
+                android:text="@string/action_login"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/al_til_user_pwd" />
+
+            <Button
+                android:id="@id/al_btn_sn"
+                style="@style/button_long"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/button_long_high"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_28"
+                android:layout_marginEnd="@dimen/dp_24"
+                android:text="@string/action_sn_code"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/al_btn_login" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <TextView
+        android:id="@id/al_tv_version"
+        style="@style/explain_text_1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_8"
+        android:layout_marginEnd="@dimen/dp_8"
+        android:layout_marginBottom="@dimen/dp_8"
+        android:gravity="center"
+        android:text="@string/version_default"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</LinearLayout>

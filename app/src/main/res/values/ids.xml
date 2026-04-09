@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="cl_title" />
+    <item type="id" name="app_title_tv_left" />
+    <item type="id" name="app_title_tv_title" />
+    <item type="id" name="app_title_tv_right" />
+    <item type="id" name="app_title_cl_tips" />
+    <item type="id" name="app_title_tv_tips" />
+    <item type="id" name="imageView" />
+    <item type="id" name="al_til_user_code" />
+    <item type="id" name="al_et_userNumber" />
+    <item type="id" name="al_til_user_name" />
+    <item type="id" name="al_tv_userName" />
+    <item type="id" name="al_til_user_pwd" />
+    <item type="id" name="al_et_userPassword" />
+    <item type="id" name="al_btn_login" />
+    <item type="id" name="al_btn_sn" />
+    <item type="id" name="al_tv_version" />
+</resources>

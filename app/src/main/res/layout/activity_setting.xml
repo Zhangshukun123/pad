@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            layout="@layout/app_title"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/title_bar_high"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/cl_title"
+            tools:ignore="MissingConstraints">
+
+            <LinearLayout
+                android:id="@+id/as_ll_order_invoicing"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_24"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_19"
+                    android:layout_weight="1.0"
+                    android:padding="@dimen/dp_5"
+                    android:text="线上支付弹出电子发票设置"
+                    android:textColor="@color/light_black"
+                    android:textSize="@dimen/text_14" />
+
+                <androidx.appcompat.widget.AppCompatToggleButton
+                    android:id="@+id/as_tb_invoicing_statue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textOff="不提示"
+                    android:textOn="提示" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/as_ll_order_pay"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_24"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_19"
+                    android:layout_weight="1.0"
+                    android:padding="@dimen/dp_5"
+                    android:text="新版线上支付操作"
+                    android:textColor="@color/light_black"
+                    android:textSize="@dimen/text_14" />
+
+                <androidx.appcompat.widget.AppCompatToggleButton
+                    android:id="@+id/as_tb_pay_option_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textOff="关闭"
+                    android:textOn="启用" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/as_btn_start_scan_service"
+                style="@style/button_long"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/button_long_high"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_24"
+                android:text="启动扫描服务"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/as_ll_order_pay" />
+
+            <Button
+                android:id="@+id/as_btn_system_manager"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/button_long_high"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_24"
+                android:background="@drawable/color_text"
+                android:padding="@dimen/dp_5"
+                android:text="系统设置"
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@id/as_btn_start_scan_service" />
+
+            <View
+                android:id="@+id/as_view"
+                android:layout_width="0.0dip"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginEnd="@dimen/dp_5"
+                android:background="@color/view_background"
+                app:layout_constraintBottom_toBottomOf="@id/textView4"
+                app:layout_constraintEnd_toStartOf="@id/textView4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/textView4" />
+
+            <TextView
+                android:id="@+id/textView4"
+                style="@style/title_small_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_8"
+                android:text="Web服务器设置"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/as_btn_system_manager" />
+
+            <View
+                android:layout_width="0.0dip"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginStart="@dimen/dp_5"
+                android:layout_marginEnd="@dimen/dp_16"
+                android:background="@color/view_background"
+                app:layout_constraintBottom_toBottomOf="@id/textView4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/textView4"
+                app:layout_constraintTop_toTopOf="@id/textView4" />
+
+            <TextView
+                android:id="@+id/al_tv_userNumber"
+                style="@style/text_ui"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_24"
+                android:text="密     码："
+                app:layout_constraintBottom_toBottomOf="@id/as_et_pwd"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/as_et_pwd" />
+
+            <com.ayma.base.widget.ClearEditText
+                android:id="@+id/as_et_pwd"
+                style="@style/edittext_1"
+                android:layout_width="0.0dip"
+                android:layout_height="@dimen/edittext_high"
+                android:layout_marginStart="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_24"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/dp_10"
+                android:singleLine="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/al_tv_userNumber"
+                app:layout_constraintTop_toBottomOf="@id/textView4" />
+
+            <Button
+                android:id="@+id/as_btn_get_data"
+                style="@style/button_long"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/button_long_high"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_24"
+                android:text="获取数据"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/as_et_pwd" />
+
+            <TextView
+                android:id="@+id/textView5"
+                style="@style/text_ui"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_24"
+                android:text="服务器地址："
+                app:layout_constraintBottom_toBottomOf="@id/as_et_net_address"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/as_et_net_address" />
+
+            <com.ayma.base.widget.ClearEditText
+                android:id="@+id/as_et_net_address"
+                style="@style/edittext_1"
+                android:layout_width="0.0dip"
+                android:layout_height="@dimen/edittext_high"
+                android:layout_marginStart="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_24"
+                android:layout_marginEnd="@dimen/dp_24"
+                android:enabled="false"
+                android:imeOptions="actionNext"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/dp_10"
+                android:singleLine="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/textView5"
+                app:layout_constraintTop_toBottomOf="@id/as_btn_get_data" />
+
+            <RadioGroup
+                android:id="@+id/as_rg_en_change"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/as_et_net_address">
+
+                <RadioButton
+                    android:id="@+id/as_rb_production"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="生产环境" />
+
+                <RadioButton
+                    android:id="@+id/as_rb_prepub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:text="预发布环境" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/as_tv_address"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/dp_5"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/as_rg_en_change" />
+
+            <Button
+                android:id="@+id/as_btn_save"
+                style="@style/button_long"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/button_long_high"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_24"
+                android:enabled="false"
+                android:text="保存设置"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/as_tv_address" />
+
+            <View
+                android:id="@+id/as_view_3"
+                android:layout_width="0.0dip"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginEnd="@dimen/dp_5"
+                android:background="@color/view_background"
+                app:layout_constraintBottom_toBottomOf="@id/textView6"
+                app:layout_constraintEnd_toStartOf="@id/textView6"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/textView6" />
+
+            <TextView
+                android:id="@+id/textView6"
+                style="@style/title_small_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_24"
+                android:layout_marginEnd="@dimen/dp_8"
+                android:text="数据管理"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/as_btn_save" />
+
+            <View
+                android:id="@+id/as_view_4"
+                android:layout_width="0.0dip"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginStart="@dimen/dp_5"
+                android:layout_marginEnd="@dimen/dp_16"
+                android:background="@color/view_background"
+                app:layout_constraintBottom_toBottomOf="@id/textView6"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/textView6"
+                app:layout_constraintTop_toTopOf="@id/textView6" />
+
+            <Button
+                android:id="@+id/as_btn_clear"
+                style="@style/button_long"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/button_long_high"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_24"
+                android:enabled="false"
+                android:text="清除销售数据"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView6" />
+
+            <Button
+                android:id="@+id/as_btn_clear_simple"
+                style="@style/button_long"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/button_long_high"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_24"
+                android:enabled="true"
+                android:text="清除资料数据"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/as_btn_clear" />
+
+            <Button
+                android:id="@+id/as_btn_gtpc"
+                style="@style/button_long"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/button_long_high"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_24"
+                android:enabled="true"
+                android:text="安装高铁配餐"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/as_btn_clear_simple" />
+
+            <LinearLayout
+                android:id="@+id/as_ll_qr"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_30"
+                android:layout_marginEnd="@dimen/dp_24"
+                android:background="@drawable/color_text"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp_2"
+                app:layout_constraintTop_toBottomOf="@id/as_btn_gtpc">
+
+                <EditText
+                    android:id="@+id/as_et_qr"
+                    android:layout_width="0.0dip"
+                    android:layout_height="@dimen/edittext_high"
+                    android:layout_weight="1.0"
+                    android:background="@color/white"
+                    android:hint="请扫描"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:paddingStart="@dimen/dp_5"
+                    android:paddingEnd="@dimen/dp_5"
+                    android:singleLine="true" />
+
+                <ImageView
+                    android:id="@+id/as_iv_scan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp_5"
+                    android:src="@drawable/ic_setting_scan" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/as_tv_machine"
+                style="@style/title_small_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout_marginEnd="@dimen/dp_8"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:text="机器型号"
+                app:layout_constraintBottom_toTopOf="@id/as_tv_machine_model"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/as_ll_qr" />
+
+            <TextView
+                android:id="@+id/as_tv_model_hint"
+                style="@style/explain_text_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginBottom="@dimen/dp_8"
+                android:text="@string/as_device_model"
+                app:layout_constraintBottom_toTopOf="@id/as_tv_machine_serial_number"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+            <TextView
+                android:id="@+id/as_tv_machine_model"
+                style="@style/explain_text_2"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_24"
+                android:layout_marginBottom="@dimen/dp_8"
+                app:layout_constraintBottom_toTopOf="@id/as_tv_machine_serial_number"
+                app:layout_constraintLeft_toRightOf="@id/as_tv_model_hint"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <TextView
+                android:id="@+id/as_tv_sn_hint"
+                style="@style/explain_text_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginBottom="@dimen/dp_8"
+                android:text="@string/as_device_sn"
+                app:layout_constraintBottom_toTopOf="@id/as_btn_bound_machine"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+            <TextView
+                android:id="@+id/as_tv_machine_serial_number"
+                style="@style/explain_text_2"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_24"
+                android:layout_marginBottom="@dimen/dp_8"
+                app:layout_constraintBottom_toTopOf="@id/as_btn_bound_machine"
+                app:layout_constraintLeft_toRightOf="@id/as_tv_sn_hint"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <Button
+                android:id="@+id/as_btn_bound_machine"
+                style="@style/button_long"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/button_long_high"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginEnd="@dimen/dp_24"
+                android:layout_marginBottom="@dimen/dp_24"
+                android:text="机器注册"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/as_tv_version"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/as_tv_version"
+                style="@style/explain_text_1"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_8"
+                android:layout_marginEnd="@dimen/dp_8"
+                android:layout_marginBottom="@dimen/dp_8"
+                android:gravity="center"
+                android:text="Ver 1.0.0.1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

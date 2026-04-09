@@ -1,0 +1,108 @@
+<resources>
+    <string name="app_name">pda</string>
+    <string name="title_back">返回</string>
+    <string name="login_title">登录</string>
+    <string name="title_setting">设置</string>
+    <string name="system_setting_title">系统设置</string>
+
+    <string name="hint_employee_code">请输入工号</string>
+    <string name="hint_user_name">用户姓名</string>
+    <string name="hint_password">请输入密码</string>
+    <string name="action_login">登录</string>
+    <string name="action_sn_code">SN码</string>
+    <string name="action_confirm">确定</string>
+    <string name="action_cancel">取消</string>
+    <string name="action_reenter">重新输入</string>
+    <string name="dialog_sn_code_title">SN码</string>
+    <string name="version_format">Ver %1$s</string>
+    <string name="version_default">Ver 1.0.0.1</string>
+
+    <string name="toast_input_valid_employee_code">请先输入有效工号</string>
+    <string name="toast_input_employee_code">请输入工号</string>
+    <string name="toast_input_password">请输入密码</string>
+    <string name="toast_employee_not_found">工号不存在</string>
+    <string name="toast_password_incorrect">密码错误</string>
+    <string name="toast_login_success">本地假数据登录成功：%1$s</string>
+    <string name="toast_setting_pending">设置功能暂未接入</string>
+
+    <string name="as_device_model">设备型号：</string>
+    <string name="as_device_sn">序列号：</string>
+    <string name="setting_verify_password">zterp8888</string>
+    <string name="setting_default_base_url">https://exservice.12306.cn/</string>
+    <string name="setting_prepub_base_url">https://prepub-exservice.12306.cn/</string>
+    <string name="setting_fake_scan_url">https://exservice.12306.cn/pda/mock-scan</string>
+    <string name="setting_fake_gtpc_url">https://mobile.12306.cn/otsmobile/app/mdsweb/mcube/8DBA91F091009-product/5.9.0.4/ANDROID/gtpc-v5.9.0.4.apk</string>
+    <string name="setting_env_production">生产环境</string>
+    <string name="setting_env_prepub">预发布环境</string>
+    <string name="setting_env_summary">当前环境：%1$s&#10;服务器地址：%2$s</string>
+    <string name="setting_fake_data_loaded">已载入本地假数据</string>
+    <string name="setting_fake_scan_filled">已填充模拟扫码结果</string>
+    <string name="setting_fake_gtpc_ready">已展示本地安装地址</string>
+    <string name="setting_fake_machine_model">CRH-PDA-Android</string>
+    <string name="setting_fake_machine_sn">PDA20260409001</string>
+    <string name="setting_fake_qr_result">MOCK://SCAN/PDA/20260409/0001</string>
+
+    <string name="dialog_notice">提示</string>
+    <string name="dialog_attention">注意</string>
+    <string name="dialog_pwd_error">密码错误</string>
+    <string name="dialog_clear_sales">确定要清除销售数据？&#10;注意：此操作会删除本地模拟销售数据，删除后无法恢复，请谨慎操作。</string>
+    <string name="dialog_clear_profile">确定要清除本地资料数据？</string>
+    <string name="dialog_open_browser">即将使用系统浏览器打开地址：&#10;&#10;%1$s&#10;&#10;是否继续？</string>
+    <string name="dialog_fake_scan_title">模拟扫码</string>
+    <string name="dialog_fake_scan_message">当前未接入真实扫码功能，是否填充一条模拟扫码结果？</string>
+    <string name="dialog_gtpc_message">安装高铁配餐&#10;注：安装版本为 5.9.0.4</string>
+
+    <string name="toast_get_data_first">请先获取数据</string>
+    <string name="toast_input_server_address">请输入服务器地址</string>
+    <string name="toast_invalid_server_address">请检查服务器地址格式是否正确</string>
+    <string name="toast_save_success">保存成功</string>
+    <string name="toast_fake_scan_service">假数据模式下未接入扫描服务</string>
+    <string name="toast_fake_bound_machine">假数据模式下暂不执行机器注册</string>
+    <string name="toast_fake_sales_cleared">已模拟清除销售数据</string>
+    <string name="toast_fake_profile_cleared">已模拟清除资料数据</string>
+    <string name="toast_fake_scan_input">假数据模式下未接入扫码，请手动输入或使用模拟结果</string>
+    <string name="toast_open_browser_failed">未找到可用浏览器</string>
+
+    <string name="system_wifi_current">当前Wi-Fi：%1$s</string>
+    <string name="system_wifi_connected">已连接</string>
+    <string name="system_wifi_disconnected">已关闭 Wi-Fi</string>
+    <string name="system_scan_connect">假数据模式下已模拟扫码连接</string>
+    <string name="system_refreshed">已刷新系统设置列表</string>
+    <string name="system_brightness_saved">已调整亮度：%1$d</string>
+    <string name="system_audio_saved">已调整声音：%1$d</string>
+    <string name="system_fake_wifi_name">CRH-PDA-TEST</string>
+    <string name="system_fake_wifi_name_alt">CRH-PDA-BACKUP</string>
+    <string name="system_item_network">网络和互联网</string>
+    <string name="system_item_display">显示</string>
+    <string name="system_item_audio">声音</string>
+    <string name="system_item_scan">扫码服务</string>
+    <string name="system_item_about">关于设备</string>
+    <string name="system_detail_wifi_on">WLAN、移动网络、当前连接 %1$s</string>
+    <string name="system_detail_wifi_off">WLAN、移动网络、当前未连接</string>
+    <string name="system_detail_display">当前亮度 %1$d%%，屏幕休眠 30 秒</string>
+    <string name="system_detail_audio">媒体音量 %1$d%%，提示音已开启</string>
+    <string name="system_detail_scan_connected">最近扫码状态：已模拟建立连接</string>
+    <string name="system_detail_scan_disconnected">最近扫码状态：未连接</string>
+    <string name="system_detail_about">型号：%1$s，序列号：%2$s</string>
+
+    <string name="route_select_title">选择交路</string>
+    <string name="route_train_no">车次</string>
+    <string name="route_team_name">班组名</string>
+    <string name="route_road_date">出乘日期</string>
+    <string name="route_action_update">更新交路</string>
+    <string name="toast_cross_road_updated">已按本地假数据刷新交路</string>
+    <string name="login_loading">登录中</string>
+    <string name="login_loading_hint">正在校验用户并加载交路…</string>
+    <string name="login_confirm_current_train">当前车次：</string>
+    <string name="login_confirm_road_date">出乘日期：</string>
+    <string name="login_confirm_current_time">当前时间：</string>
+
+    <string name="menu_title">菜单</string>
+    <string name="menu_welcome">已按 APK 逻辑完成交路确认，当前进入本地假数据菜单页。</string>
+    <string name="menu_user_code">工号：%1$s</string>
+    <string name="menu_user_name">姓名：%1$s</string>
+    <string name="menu_train_no">当前车次：%1$s</string>
+    <string name="menu_team_name">班组名：%1$s</string>
+    <string name="menu_road_date">出乘日期：%1$s</string>
+    <string name="menu_logout">退出登录</string>
+</resources>
