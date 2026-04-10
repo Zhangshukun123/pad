@@ -15,6 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pda">
         <activity
+            android:name=".QueryWarehouseActivity"
+            android:exported="false"
+            android:label="@string/menu_query_warehouse_stock"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Pda" />
+        <activity
             android:name=".QuerySellGetMoneyActivity"
             android:exported="false"
             android:label="@string/menu_query_sell_get_money"

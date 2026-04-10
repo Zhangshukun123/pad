@@ -31,6 +31,17 @@ class SystemSettingActivity : AppCompatActivity() {
     private lateinit var connectButton: Button
     private lateinit var adapter: SystemSettingAdapter
 
+    private val barcodeLauncher = registerForActivityResult(com.journeyapps.barcodescanner.ScanContract()) { result ->
+        if (result.contents != null) {
+            store.scanConnected = true
+            renderScanStatus()
+            renderList()
+            toast(getString(R.string.system_scan_connect) + "\n扫码内容: " + result.contents)
+        } else {
+            toast("取消扫码")
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_system_setting)
@@ -124,10 +135,11 @@ class SystemSettingActivity : AppCompatActivity() {
         }
 
         connectButton.setOnClickListener {
-            store.scanConnected = true
-            renderScanStatus()
-            renderList()
-            toast(getString(R.string.system_scan_connect))
+            barcodeLauncher.launch(com.journeyapps.barcodescanner.ScanOptions().apply {
+                setPrompt("请对准二维码/条形码进行扫描接入")
+                setBeepEnabled(true)
+                setOrientationLocked(false)
+            })
         }
     }
 

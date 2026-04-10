@@ -238,13 +238,25 @@ class MenuActivity : AppCompatActivity() {
                 )
             )
         }
-        bindFakeAction(R.id.am_btn_query_warehouse, R.string.menu_query_warehouse_stock)
+        findViewById<View>(R.id.am_btn_query_warehouse).setOnClickListener {
+            startActivity(
+                QueryWarehouseActivity.createIntent(
+                    context = this,
+                    employeeCode = employeeCode,
+                    userName = userName,
+                    roadId = currentRoute.roadId,
+                    trainNo = currentRoute.trainNo,
+                    teamName = currentRoute.teamName,
+                    roadDate = currentRoute.roadDate
+                )
+            )
+        }
 
         findViewById<View>(R.id.am_btn_down_common_data).setOnClickListener {
             startActivity(Intent(this, DownloadActivity::class.java))
         }
         findViewById<View>(R.id.am_btn_quitsystem).setOnClickListener {
-            openLoginPage()
+            showQuitSystemDialog()
         }
     }
 
@@ -402,6 +414,16 @@ class MenuActivity : AppCompatActivity() {
 
     private fun hideLoadingDialog() {
         loadingDialog?.dismiss()
+    }
+
+    private fun showQuitSystemDialog() {
+        AlertDialog.Builder(this)
+            .setMessage("是否登出当前用户：$userName？")
+            .setNegativeButton("取消", null)
+            .setPositiveButton("确定") { _, _ ->
+                openLoginPage()
+            }
+            .show()
     }
 
     private fun openLoginPage() {

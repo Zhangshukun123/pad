@@ -108,6 +108,7 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/table_title</item>
         <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/bg_table_content</item>
         <item name="android:layout_marginTop">@dimen/dp_1</item>
         <item name="android:layout_marginRight">@dimen/dp_1</item>
     </style>
