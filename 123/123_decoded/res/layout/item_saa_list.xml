@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:id="@id/root" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="@dimen/bill_table_grid_igh"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView android:id="@id/isl_tv_goods_code" android:layout_width="@dimen/dp_85" android:layout_height="fill_parent" android:text="商品编码" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/isl_tv_goods_name" android:layout_width="0.0dip" android:layout_height="fill_parent" android:text="商品名称" android:layout_weight="1.0" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/isl_tv_goods_add" android:layout_width="@dimen/dp_48" android:layout_height="fill_parent" android:text="补货数" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/isl_tv_goods_in" android:layout_width="@dimen/dp_43" android:layout_height="fill_parent" android:text="转入" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/isl_tv_goods_out_stock" android:layout_width="@dimen/dp_43" android:layout_height="fill_parent" android:text="出库" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/isl_tv_goods_return" android:layout_width="@dimen/dp_43" android:layout_height="fill_parent" android:text="退库" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/isl_tv_goods_scrap" android:layout_width="@dimen/dp_43" android:layout_height="fill_parent" android:text="报废" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/isl_tv_goods_lost" android:layout_width="@dimen/dp_43" android:layout_height="fill_parent" android:text="丢失" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/isl_tv_goods_goods_sale" android:layout_width="@dimen/dp_43" android:layout_height="fill_parent" android:text="销售" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/isl_tv_goods_goods_sale_12306" android:layout_width="@dimen/dp_43" android:layout_height="fill_parent" android:text="12306" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/isl_tv_goods_out" android:layout_width="@dimen/dp_43" android:layout_height="fill_parent" android:text="转出" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/isl_tv_goods_tran_stock" android:layout_width="@dimen/dp_43" android:layout_height="fill_parent" android:text="车存" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+</LinearLayout>

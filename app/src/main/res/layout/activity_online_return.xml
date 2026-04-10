@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/cl_root" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <include android:layout_width="fill_parent" android:layout_height="@dimen/title_bar_high" app:layout_constraintTop_toTopOf="parent" layout="@layout/app_title" />
+    <include android:layout_width="fill_parent" android:layout_height="wrap_content" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintTop_toBottomOf="@id/cl_title" layout="@layout/app_user_info" />
+    <com.google.android.material.tabs.TabLayout android:id="@+id/aor_tl" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="wrap_content" app:layout_constraintTop_toBottomOf="@id/cl_user" app:tabBackground="@android:color/transparent" app:tabGravity="fill" app:tabIndicatorColor="@color/menu_button_border" app:tabIndicatorFullWidth="false" app:tabMaxWidth="0.0dip" app:tabRippleColor="@android:color/transparent" app:tabSelectedTextColor="@color/colorPrimary" app:tabTextColor="@color/colorPrimary">
+        <com.google.android.material.tabs.TabItem android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="普通订单" />
+        <com.google.android.material.tabs.TabItem android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="京东支付订单" />
+    </com.google.android.material.tabs.TabLayout>
+    <FrameLayout android:id="@+id/aor_fl" android:layout_width="fill_parent" android:layout_height="0.0dip" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@id/aor_tl" />
+</androidx.constraintlayout.widget.ConstraintLayout>

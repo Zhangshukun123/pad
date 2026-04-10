@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat android:orientation="horizontal" android:id="@id/root" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="@dimen/dp_40"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView android:id="@id/tv_train_no" android:layout_width="0.0dip" android:layout_height="fill_parent" android:text="G901" android:layout_weight="1.0" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/tv_team_name" android:layout_width="0.0dip" android:layout_height="fill_parent" android:text="福建一组" android:layout_weight="1.0" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/tv_road_date" android:layout_width="0.0dip" android:layout_height="fill_parent" android:text="2019-05-08" android:layout_weight="1.0" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+</androidx.appcompat.widget.LinearLayoutCompat>

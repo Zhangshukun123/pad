@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:id="@id/root" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textColor="@color/table_title" android:gravity="center" android:id="@id/i_am_qh_h_tv_position" android:layout_width="@dimen/dp_40" android:layout_height="fill_parent" android:text="序号" />
+    <View android:background="@color/table_view_background" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <LinearLayout android:orientation="vertical" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0">
+        <TextView android:gravity="center" android:id="@id/i_am_qh_h_tv_code" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="编码" android:layout_weight="1.0" style="@style/text_ui" />
+        <View android:background="@color/divider_color_gray" android:layout_width="fill_parent" android:layout_height="@dimen/dp_1" />
+        <TextView android:gravity="center" android:id="@id/i_am_qh_h_tv_goods_name" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="商品名称" android:layout_weight="2.0" style="@style/text_ui" />
+    </LinearLayout>
+    <View android:background="@color/table_view_background" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:textColor="@color/table_title" android:gravity="center" android:id="@id/i_am_qh_h_tv_birthday" android:layout_width="@dimen/dp_70" android:layout_height="fill_parent" android:text="生产日期" />
+    <View android:background="@color/table_view_background" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:textColor="@color/table_title" android:gravity="center" android:id="@id/i_am_qh_h_tv_stock_qty" android:layout_width="@dimen/dp_50" android:layout_height="fill_parent" android:text="库存数" />
+    <View android:background="@color/table_view_background" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:textColor="@color/red" android:gravity="center" android:id="@id/i_am_qh_h_tv_qty" android:layout_width="@dimen/dp_50" android:layout_height="fill_parent" android:text="交接数" />
+</LinearLayout>

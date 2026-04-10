@@ -160,12 +160,84 @@ class MenuActivity : AppCompatActivity() {
                 }
             )
         }
-        bindFakeAction(R.id.am_btn_online_return, R.string.menu_online_return)
-        bindFakeAction(R.id.am_btn_sell_table, R.string.menu_sell_analysis)
-        bindFakeAction(R.id.am_btn_query_sell_detail, R.string.menu_sell_detail)
-        bindFakeAction(R.id.am_btn_query_bill, R.string.menu_query_bill)
-        bindFakeAction(R.id.am_btn_query_order, R.string.menu_query_order)
-        bindFakeAction(R.id.am_btn_query_sell_getmoney, R.string.menu_query_sell_get_money)
+        findViewById<View>(R.id.am_btn_online_return).setOnClickListener {
+            startActivity(
+                OnlineRefundActivity.createIntent(
+                    activity = this,
+                    employeeCode = employeeCode,
+                    userName = userName,
+                    roadId = currentRoute.roadId,
+                    trainNo = currentRoute.trainNo,
+                    teamName = currentRoute.teamName,
+                    roadDate = currentRoute.roadDate
+                )
+            )
+        }
+        findViewById<View>(R.id.am_btn_sell_table).setOnClickListener {
+            startActivity(
+                SaleAnalysisActivity.createIntent(
+                    context = this,
+                    employeeCode = employeeCode,
+                    userName = userName,
+                    roadId = currentRoute.roadId,
+                    trainNo = currentRoute.trainNo,
+                    teamName = currentRoute.teamName,
+                    roadDate = currentRoute.roadDate
+                )
+            )
+        }
+        findViewById<View>(R.id.am_btn_query_sell_detail).setOnClickListener {
+            startActivity(
+                QuerySellDetailActivity.createIntent(
+                    context = this,
+                    employeeCode = employeeCode,
+                    userName = userName,
+                    roadId = currentRoute.roadId,
+                    trainNo = currentRoute.trainNo,
+                    teamName = currentRoute.teamName,
+                    roadDate = currentRoute.roadDate
+                )
+            )
+        }
+        findViewById<View>(R.id.am_btn_query_bill).setOnClickListener {
+            startActivity(
+                QueryBillActivity.createIntent(
+                    context = this,
+                    employeeCode = employeeCode,
+                    userName = userName,
+                    roadId = currentRoute.roadId,
+                    trainNo = currentRoute.trainNo,
+                    teamName = currentRoute.teamName,
+                    roadDate = currentRoute.roadDate
+                )
+            )
+        }
+        findViewById<View>(R.id.am_btn_query_order).setOnClickListener {
+            startActivity(
+                QueryOrderActivity.createIntent(
+                    context = this,
+                    employeeCode = employeeCode,
+                    userName = userName,
+                    roadId = currentRoute.roadId,
+                    trainNo = currentRoute.trainNo,
+                    teamName = currentRoute.teamName,
+                    roadDate = currentRoute.roadDate
+                )
+            )
+        }
+        findViewById<View>(R.id.am_btn_query_sell_getmoney).setOnClickListener {
+            startActivity(
+                QuerySellGetMoneyActivity.createIntent(
+                    context = this,
+                    employeeCode = employeeCode,
+                    userName = userName,
+                    roadId = currentRoute.roadId,
+                    trainNo = currentRoute.trainNo,
+                    teamName = currentRoute.teamName,
+                    roadDate = currentRoute.roadDate
+                )
+            )
+        }
         bindFakeAction(R.id.am_btn_query_warehouse, R.string.menu_query_warehouse_stock)
 
         findViewById<View>(R.id.am_btn_down_common_data).setOnClickListener {

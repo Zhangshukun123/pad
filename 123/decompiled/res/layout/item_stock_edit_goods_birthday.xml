@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:id="@id/root" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="@dimen/dp_30"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="@dimen/text_12" android:textStyle="bold" android:textColor="@color/light_black" android:gravity="center" android:id="@id/item_segb_tv_goods_code" android:layout_width="0.0dip" android:layout_height="fill_parent" android:text="商品编码" android:layout_weight="1.0" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:textSize="@dimen/text_12" android:textStyle="bold" android:textColor="@color/light_black" android:gravity="center" android:id="@id/item_segb_tv_goods_name" android:layout_width="0.0dip" android:layout_height="fill_parent" android:text="商品名称" android:maxLines="1" android:layout_weight="1.0" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:textSize="@dimen/text_12" android:textStyle="bold" android:textColor="@color/light_black" android:gravity="center" android:id="@id/item_segb_tv_birthday" android:layout_width="0.0dip" android:layout_height="fill_parent" android:text="生产日期" android:layout_weight="1.0" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:textSize="@dimen/text_12" android:textStyle="bold" android:textColor="@color/light_black" android:gravity="center" android:id="@id/item_segb_tv_qty" android:layout_width="0.0dip" android:layout_height="fill_parent" android:text="库存数量" android:layout_weight="1.0" />
+</LinearLayout>

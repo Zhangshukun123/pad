@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -13,6 +14,45 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Pda">
+        <activity
+            android:name=".QuerySellGetMoneyActivity"
+            android:exported="false"
+            android:label="@string/menu_query_sell_get_money"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Pda" />
+        <activity
+            android:name=".QueryBillActivity"
+            android:exported="false"
+            android:label="@string/query_bill_title"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.Pda" />
+        <activity
+            android:name=".QueryOrderActivity"
+            android:exported="false"
+            android:label="@string/menu_query_order"
+            android:theme="@style/Theme.Pda" />
+        <activity
+            android:name=".QuerySellDetailActivity"
+            android:exported="false"
+            android:label="@string/menu_sell_detail"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.Pda" />
+        <activity
+            android:name=".SaleAnalysisActivity"
+            android:exported="false"
+            android:label="@string/sale_analysis_title"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.Pda" />
+        <activity
+            android:name=".OnlineRefundActivity"
+            android:exported="false"
+            android:label="@string/online_refund_title"
+            android:theme="@style/Theme.Pda" />
+        <activity
+            android:name=".ScanPayActivity"
+            android:exported="false"
+            android:label="@string/scan_pay_title"
+            android:theme="@style/Theme.Pda" />
         <activity
             android:name=".SelectGoodsActivity"
             android:exported="false"

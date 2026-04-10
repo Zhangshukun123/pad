@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:id="@id/root" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="@dimen/table_grid_igh"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView android:id="@id/i_qtpa_l_tv_goods_code" android:layout_width="0.0dip" android:layout_height="fill_parent" android:text="商品编码" android:layout_weight="2.0" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/i_qtpa_l_tv_goods_name" android:layout_width="0.0dip" android:layout_height="fill_parent" android:text="商品名称" android:layout_weight="3.0" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/i_qtpa_l_tv_receive_count" android:layout_width="@dimen/dp_40" android:layout_height="fill_parent" android:text="接班数" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/i_qtpa_l_tv_warehouse_receive_count" android:layout_width="@dimen/dp_55" android:layout_height="fill_parent" android:text="库领数" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/i_qtpa_l_tv_warehouse_add_count" android:layout_width="@dimen/dp_40" android:layout_height="fill_parent" android:text="补货数" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/i_qtpa_l_tv_total_count" android:layout_width="@dimen/dp_40" android:layout_height="fill_parent" android:text="总数量" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <CheckBox android:id="@id/cb_select" android:visibility="visible" android:layout_width="@dimen/dp_28" android:layout_height="fill_parent" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+</LinearLayout>

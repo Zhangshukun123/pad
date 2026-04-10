@@ -46,6 +46,10 @@ class FakePdaSettingsStore(context: Context) {
         get() = preferences.getString(KEY_LAST_SCAN_RESULT, "") ?: ""
         set(value) = preferences.edit().putString(KEY_LAST_SCAN_RESULT, value).apply()
 
+    var skipCashReturnHint: Boolean
+        get() = preferences.getBoolean(KEY_SKIP_CASH_RETURN_HINT, false)
+        set(value) = preferences.edit().putBoolean(KEY_SKIP_CASH_RETURN_HINT, value).apply()
+
     fun ensureDefaults(context: Context) {
         if (baseUrl.isBlank()) {
             baseUrl = defaultUrl(context, environment)
@@ -75,6 +79,7 @@ class FakePdaSettingsStore(context: Context) {
             .putString(KEY_MACHINE_SN, context.getString(R.string.setting_fake_machine_sn))
             .putString(KEY_LAST_SCAN_RESULT, "")
             .putBoolean(KEY_SCAN_CONNECTED, false)
+            .putBoolean(KEY_SKIP_CASH_RETURN_HINT, false)
             .apply()
     }
 
@@ -101,6 +106,7 @@ class FakePdaSettingsStore(context: Context) {
         private const val KEY_WIFI_NAME_INDEX = "wifi_name_index"
         private const val KEY_SCAN_CONNECTED = "scan_connected"
         private const val KEY_LAST_SCAN_RESULT = "last_scan_result"
+        private const val KEY_SKIP_CASH_RETURN_HINT = "skip_cash_return_hint"
         private const val WIFI_NAME_COUNT = 2
     }
 }

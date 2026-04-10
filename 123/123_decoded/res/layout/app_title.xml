@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:id="@id/cl_title" android:background="@color/title_fence_background" android:layout_width="fill_parent" android:layout_height="@dimen/title_bar_high"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <TextView android:textSize="@dimen/text_16" android:gravity="center" android:id="@id/app_title_tv_left" android:layout_width="@dimen/dp_50" android:layout_height="0.0dip" android:text="@string/title_back" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintTop_toTopOf="parent" style="@style/title_text_button" />
+        <TextView android:id="@id/app_title_tv_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintRight_toRightOf="parent" app:layout_constraintTop_toTopOf="parent" style="@style/title_text" />
+        <TextView android:textSize="@dimen/text_16" android:gravity="center" android:id="@id/app_title_tv_right" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="0.0dip" android:maxWidth="@dimen/dp_100" android:minWidth="@dimen/dp_50" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintRight_toRightOf="parent" app:layout_constraintTop_toTopOf="parent" style="@style/title_text_button" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout android:id="@id/app_title_cl_tips" android:background="@color/light_red" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <TextView android:textColor="@color/white" android:gravity="center_vertical" android:id="@id/app_title_tv_tips" android:paddingLeft="@dimen/dp_5" android:paddingTop="@dimen/dp_2" android:paddingRight="@dimen/dp_5" android:paddingBottom="@dimen/dp_2" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

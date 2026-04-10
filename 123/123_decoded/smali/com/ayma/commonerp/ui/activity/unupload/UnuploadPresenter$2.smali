@@ -1,0 +1,141 @@
+.class Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter$2;
+.super Ljava/lang/Object;
+.source "UnuploadPresenter.java"
+
+# interfaces
+.implements Lcom/ayma/base/mvp/ModelCallBack;
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingMethod;
+    value = Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter;->deleteOrderByNo(Ljava/lang/String;)V
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x0
+    name = null
+.end annotation
+
+
+# instance fields
+.field final synthetic this$0:Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter;
+
+
+# direct methods
+.method constructor <init>(Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter;)V
+    .locals 0
+
+    .line 87
+    iput-object p1, p0, Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter$2;->this$0:Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter;
+
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public requestError(Ljava/lang/Throwable;)V
+    .locals 1
+
+    .line 90
+    iget-object v0, p0, Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter$2;->this$0:Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter;
+
+    invoke-static {v0}, Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter;->access$700(Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    return-void
+
+    .line 93
+    :cond_0
+    iget-object v0, p0, Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter$2;->this$0:Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter;
+
+    invoke-static {v0}, Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter;->access$800(Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter;)Lcom/ayma/base/mvp/IMvpBaseView;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/ayma/commonerp/ui/activity/unupload/UnuploadContact$IUnuploadView;
+
+    invoke-interface {v0}, Lcom/ayma/commonerp/ui/activity/unupload/UnuploadContact$IUnuploadView;->hideLoading()V
+
+    .line 94
+    iget-object v0, p0, Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter$2;->this$0:Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter;
+
+    invoke-static {v0}, Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter;->access$900(Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter;)Lcom/ayma/base/mvp/IMvpBaseView;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/ayma/commonerp/ui/activity/unupload/UnuploadContact$IUnuploadView;
+
+    invoke-virtual {p1}, Ljava/lang/Throwable;->getMessage()Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-interface {v0, p1}, Lcom/ayma/commonerp/ui/activity/unupload/UnuploadContact$IUnuploadView;->showNoticeToastError(Ljava/lang/String;)V
+
+    .line 95
+    iget-object p1, p0, Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter$2;->this$0:Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter;
+
+    invoke-virtual {p1}, Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter;->getData()V
+
+    return-void
+.end method
+
+.method public requestFailure(Ljava/lang/Throwable;)V
+    .locals 0
+
+    .line 100
+    invoke-virtual {p0, p1}, Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter$2;->requestError(Ljava/lang/Throwable;)V
+
+    return-void
+.end method
+
+.method public requestSuccess()V
+    .locals 2
+
+    .line 105
+    iget-object v0, p0, Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter$2;->this$0:Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter;
+
+    invoke-static {v0}, Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter;->access$1000(Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    return-void
+
+    .line 108
+    :cond_0
+    iget-object v0, p0, Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter$2;->this$0:Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter;
+
+    invoke-static {v0}, Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter;->access$1100(Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter;)Lcom/ayma/base/mvp/IMvpBaseView;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/ayma/commonerp/ui/activity/unupload/UnuploadContact$IUnuploadView;
+
+    invoke-interface {v0}, Lcom/ayma/commonerp/ui/activity/unupload/UnuploadContact$IUnuploadView;->hideLoading()V
+
+    .line 109
+    iget-object v0, p0, Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter$2;->this$0:Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter;
+
+    invoke-static {v0}, Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter;->access$1200(Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter;)Lcom/ayma/base/mvp/IMvpBaseView;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/ayma/commonerp/ui/activity/unupload/UnuploadContact$IUnuploadView;
+
+    const-string v1, "\u5df2\u5220\u9664"
+
+    invoke-interface {v0, v1}, Lcom/ayma/commonerp/ui/activity/unupload/UnuploadContact$IUnuploadView;->showNoticeToastOk(Ljava/lang/String;)V
+
+    .line 110
+    iget-object v0, p0, Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter$2;->this$0:Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter;
+
+    invoke-virtual {v0}, Lcom/ayma/commonerp/ui/activity/unupload/UnuploadPresenter;->getData()V
+
+    return-void
+.end method

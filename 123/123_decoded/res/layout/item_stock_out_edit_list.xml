@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:id="@id/root" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="@dimen/table_grid_igh"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="@dimen/text_12" android:textStyle="bold" android:textColor="@color/light_black" android:gravity="center" android:id="@id/item_fsoe_tv_goods_name" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_marginTop="@dimen/dp_1" android:text="商品名称" android:layout_weight="1.0" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:textSize="@dimen/text_12" android:textStyle="bold" android:textColor="@color/light_black" android:gravity="center" android:id="@id/item_fsoe_tv_goods_birth" android:layout_width="@dimen/dp_70" android:layout_height="fill_parent" android:layout_marginTop="@dimen/dp_1" android:text="生产日期" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:textSize="@dimen/text_12" android:textStyle="bold" android:textColor="@color/light_black" android:gravity="center" android:id="@id/item_fsoe_tv_goods_number" android:layout_width="@dimen/dp_50" android:layout_height="fill_parent" android:layout_marginTop="@dimen/dp_1" android:text="数量" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:textSize="@dimen/text_12" android:textStyle="bold" android:textColor="@color/light_black" android:gravity="center" android:id="@id/item_fsoe_tv_goods_qty" android:layout_width="@dimen/dp_50" android:layout_height="fill_parent" android:layout_marginTop="@dimen/dp_1" android:text="库存数量" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:textSize="@dimen/text_12" android:textStyle="bold" android:textColor="@color/light_black" android:gravity="center" android:id="@id/fsoe_tv_goods_cost_price" android:layout_width="@dimen/dp_60" android:layout_height="fill_parent" android:layout_marginTop="@dimen/dp_1" android:text="含税价格" />
+</LinearLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.google.android.material.tabs.TabLayout android:id="@id/fso_tl" android:background="@color/white" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent" app:tabBackground="@color/transparent" app:tabGravity="fill" app:tabIndicatorColor="@color/menu_button_border" app:tabIndicatorFullWidth="false" app:tabMaxWidth="0.0dip" app:tabRippleColor="@color/gray_80_25" app:tabSelectedTextColor="@color/colorPrimary" app:tabTextColor="@color/gray">
+        <com.google.android.material.tabs.TabItem android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/sell_counter_order_not_finish" />
+        <com.google.android.material.tabs.TabItem android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/sell_counter_order_finished" />
+        <com.google.android.material.tabs.TabItem android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/sell_counter_order_refunded" />
+    </com.google.android.material.tabs.TabLayout>
+    <androidx.viewpager2.widget.ViewPager2 android:id="@id/fso_vp" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@id/fso_tl" />
+</androidx.constraintlayout.widget.ConstraintLayout>

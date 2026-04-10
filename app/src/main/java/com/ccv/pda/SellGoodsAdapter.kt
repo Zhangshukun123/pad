@@ -23,7 +23,7 @@ class SellGoodsAdapter : RecyclerView.Adapter<SellGoodsAdapter.SellGoodsViewHold
     }
 
     override fun onBindViewHolder(holder: SellGoodsViewHolder, position: Int) {
-        holder.bind(items[position], position)
+        holder.bind(items[position], position, position == items.lastIndex)
     }
 
     override fun getItemCount(): Int = items.size
@@ -37,9 +37,10 @@ class SellGoodsAdapter : RecyclerView.Adapter<SellGoodsAdapter.SellGoodsViewHold
         private val typeView: TextView = itemView.findViewById(R.id.isg_tv_goods_type)
         private val codeView: TextView = itemView.findViewById(R.id.isg_tv_goods_code)
         private val amountView: TextView = itemView.findViewById(R.id.isg_tv_goods_amount)
+        private val bottomLineView: View = itemView.findViewById(R.id.isg_v_bottom_line)
         private val cellViews = listOf(nameView, countView, priceView, typeView, codeView, amountView)
 
-        fun bind(item: FakeSellGood, position: Int) {
+        fun bind(item: FakeSellGood, position: Int, isLastItem: Boolean) {
             nameView.text = item.name
             countView.text = item.quantity.toString()
             priceView.text = formatter.format(item.price)
@@ -53,6 +54,7 @@ class SellGoodsAdapter : RecyclerView.Adapter<SellGoodsAdapter.SellGoodsViewHold
                 Color.parseColor("#FFFFFFFF")
             }
             cellViews.forEach { it.setBackgroundColor(backgroundColor) }
+            bottomLineView.visibility = if (isLastItem) View.VISIBLE else View.GONE
         }
     }
 }

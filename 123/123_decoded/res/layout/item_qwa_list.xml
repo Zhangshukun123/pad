@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:id="@id/root" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView android:textSize="@dimen/text_18" android:textColor="@color/light_black" android:gravity="center" android:id="@id/iql_tv_title" android:background="@drawable/bg_table_type_title" android:padding="@dimen/dp_3" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="@dimen/table_grid_igh">
+        <TextView android:id="@id/iql_tv_goods_code" android:layout_width="0.0dip" android:layout_height="fill_parent" android:text="商品编码" android:layout_weight="2.0" style="@style/table_grid_text_new" />
+        <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+        <TextView android:id="@id/iql_tv_goods_name" android:layout_width="0.0dip" android:layout_height="fill_parent" android:text="商品名称" android:layout_weight="3.0" app:layout_constraintHorizontal_weight="3.0" style="@style/table_grid_text_new" />
+        <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+        <TextView android:id="@id/iql_tv_goods_count" android:layout_width="@dimen/dp_50" android:layout_height="fill_parent" android:text="数量" style="@style/table_grid_text_new" />
+        <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+        <TextView android:id="@id/iql_tv_goods_price" android:layout_width="@dimen/dp_60" android:layout_height="fill_parent" android:text="单价" style="@style/table_grid_text_new" />
+        <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+        <TextView android:id="@id/iql_tv_total_price" android:layout_width="@dimen/dp_60" android:layout_height="fill_parent" android:text="小计" style="@style/table_grid_text_new" />
+        <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    </LinearLayout>
+</LinearLayout>

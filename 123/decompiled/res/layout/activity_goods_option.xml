@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:background="#fff2f2f2" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <include android:layout_width="fill_parent" android:layout_height="@dimen/title_bar_high" layout="@layout/app_title" />
+    <include android:layout_width="fill_parent" android:layout_height="wrap_content" app:layout_constraintTop_toBottomOf="@id/cl_title" layout="@layout/app_user_info" />
+    <LinearLayout android:orientation="horizontal" android:id="@id/ago_ll_search" android:background="@drawable/color_text" android:padding="@dimen/dp_5" android:layout_width="0.0dip" android:layout_height="@dimen/dp_35" android:layout_margin="@dimen/dp_5" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintRight_toRightOf="parent" app:layout_constraintTop_toBottomOf="@id/cl_user">
+        <com.ayma.base.widget.ClearEditText android:gravity="center_vertical" android:id="@id/ago_et_search" android:background="@null" android:layout_width="0.0dip" android:layout_height="fill_parent" android:hint="搜索商品" android:layout_weight="1.0" android:inputType="text" android:imeOptions="actionDone" android:layout_marginEnd="@dimen/dp_10" />
+        <ImageView android:id="@id/ago_iv_search" android:layout_width="@dimen/dp_25" android:layout_height="@dimen/dp_25" android:src="@mipmap/ic_search" />
+    </LinearLayout>
+    <LinearLayout android:orientation="horizontal" android:id="@id/ago_ll_head" android:layout_width="fill_parent" android:layout_height="0.0dip" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@id/ago_ll_search">
+        <androidx.constraintlayout.widget.ConstraintLayout android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_75" android:layout_height="fill_parent">
+            <androidx.recyclerview.widget.RecyclerView android:id="@id/ago_rlv_small_type" android:layout_width="fill_parent" android:layout_height="0.0dip" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="3.0">
+            <androidx.recyclerview.widget.RecyclerView android:id="@id/ago_rv" android:layoutAnimation="@anim/layout_animation_fall_down" android:layout_width="fill_parent" android:layout_height="0.0dip" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toTopOf="parent" />
+            <TextView android:textSize="@dimen/text_20" android:gravity="center" android:id="@id/ago_tv_no_data" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="无数据" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

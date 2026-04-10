@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <include android:id="@id/layout_title" android:layout_width="fill_parent" android:layout_height="@dimen/title_bar_high" app:layout_constraintTop_toTopOf="parent" layout="@layout/app_title" />
+    <include android:layout_width="fill_parent" android:layout_height="wrap_content" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintTop_toBottomOf="@id/layout_title" layout="@layout/app_user_info" />
+    <Button android:id="@id/aquo_btn_alipay_query" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dp_10" android:layout_marginTop="@dimen/dp_20" android:text="支付宝查询" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintRight_toLeftOf="@id/aquo_btn_wechat_query" app:layout_constraintTop_toBottomOf="@id/cl_user" style="@style/button_1" />
+    <Button android:id="@id/aquo_btn_wechat_query" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dp_10" android:layout_marginTop="@dimen/dp_20" android:layout_marginRight="@dimen/dp_10" android:text="微信查询" app:layout_constraintLeft_toRightOf="@id/aquo_btn_alipay_query" app:layout_constraintRight_toRightOf="parent" app:layout_constraintTop_toBottomOf="@id/cl_user" style="@style/button_1" />
+    <androidx.recyclerview.widget.RecyclerView android:id="@id/aquo_rlv_data" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_marginTop="@dimen/dp_10" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@id/aquo_btn_alipay_query" />
+</androidx.constraintlayout.widget.ConstraintLayout>

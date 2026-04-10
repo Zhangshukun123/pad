@@ -6,15 +6,18 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
+import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CheckBox
+import android.widget.PopupWindow
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatSpinner
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -44,12 +47,20 @@ class SellActivity : AppCompatActivity() {
     private val goodsAdapter = SellGoodsAdapter()
     private val goodsList = mutableListOf<FakeSellGood>()
     private val amountFormatter = DecimalFormat("0.##")
+    private val payAmountFormatter = DecimalFormat("0.00")
     private var loadingDialog: AlertDialog? = null
+    private var onlinePayDialog: AlertDialog? = null
+    private var submitMenuPopup: PopupWindow? = null
+    private var onlinePayOrderAmountView: TextView? = null
+    private var onlinePayReceivableAmountView: TextView? = null
+    private var onlinePayCodeEdit: AppCompatEditText? = null
+    private val settingsStore by lazy { FakePdaSettingsStore(this) }
 
     private lateinit var employeeCode: String
     private lateinit var userName: String
     private lateinit var trainNo: String
     private lateinit var roadDate: String
+    private var ignoreCashReturnChange = false
 
     private val selectGoodsLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -68,6 +79,18 @@ class SellActivity : AppCompatActivity() {
                 selectedGoods.sumOf { it.quantity }
             )
         )
+    }
+    private val scanPayLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode != RESULT_OK) {
+            return@registerForActivityResult
+        }
+        val payCode = ScanPayActivity.readScanResult(result.data)
+        if (payCode.isBlank()) {
+            return@registerForActivityResult
+        }
+        fillOnlinePayCode(payCode)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -149,14 +172,20 @@ class SellActivity : AppCompatActivity() {
 
     private fun initListeners() {
         leftView.setOnClickListener { finish() }
-        rightView.setOnClickListener { submitSale() }
+        rightView.setOnClickListener { toggleSubmitMenu() }
+        cashReturnCheckBox.setOnCheckedChangeListener { _, isChecked ->
+            if (ignoreCashReturnChange || !isChecked) {
+                return@setOnCheckedChangeListener
+            }
+            handleCashReturnChecked()
+        }
         selectGoodsButton.setOnClickListener { openSelectGoodsPage() }
-        deleteAllButton.setOnClickListener { deleteAllGoods() }
+        deleteAllButton.setOnClickListener { confirmDeleteAllGoods() }
         cameraPayButton.setOnClickListener {
-            toast(getString(R.string.sell_camera_pay_fake))
+            openCameraOnlinePay()
         }
         laserPayButton.setOnClickListener {
-            toast(getString(R.string.sell_laser_pay_fake))
+            openLaserOnlinePay()
         }
         scanCodeEdit.setOnEditorActionListener { _, actionId, event ->
             val isDoneAction = actionId == EditorInfo.IME_ACTION_DONE
@@ -169,6 +198,13 @@ class SellActivity : AppCompatActivity() {
                 false
             }
         }
+    }
+
+    private fun handleCashReturnChecked() {
+        if (settingsStore.skipCashReturnHint) {
+            return
+        }
+        showCashReturnHintDialog()
     }
 
     private fun openSelectGoodsPage() {
@@ -184,6 +220,23 @@ class SellActivity : AppCompatActivity() {
                 )
             }
         )
+    }
+
+    private fun openLaserOnlinePay() {
+        if (goodsList.isEmpty()) {
+            toast(getString(R.string.sell_submit_empty))
+            return
+        }
+        showOnlinePayDialog(resetInput = true)
+        onlinePayCodeEdit?.requestFocus()
+    }
+
+    private fun openCameraOnlinePay() {
+        if (goodsList.isEmpty()) {
+            toast(getString(R.string.sell_submit_empty))
+            return
+        }
+        showOnlinePayDialog(resetInput = true, openScannerAfterShow = true)
     }
 
     private fun addGoodsFromScan() {
@@ -229,14 +282,222 @@ class SellActivity : AppCompatActivity() {
         updateSummary()
     }
 
-    private fun deleteAllGoods() {
+    private fun confirmDeleteAllGoods() {
         if (goodsList.isEmpty()) {
             toast(getString(R.string.sell_goods_empty))
             return
         }
+        AlertDialog.Builder(this)
+            .setTitle(R.string.dialog_notice)
+            .setMessage(R.string.sell_delete_all_confirm_message)
+            .setNegativeButton(R.string.action_cancel, null)
+            .setPositiveButton(R.string.action_confirm) { _, _ ->
+                deleteAllGoods()
+            }
+            .show()
+    }
+
+    private fun showCashReturnHintDialog() {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_cash_return_hint, null)
+        val skipHintCheckBox = dialogView.findViewById<CheckBox>(R.id.dcrh_cb_skip_hint)
+        val cancelView = dialogView.findViewById<TextView>(R.id.dcrh_tv_cancel)
+        val confirmView = dialogView.findViewById<TextView>(R.id.dcrh_tv_confirm)
+
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(true)
+            .create()
+
+        var confirmed = false
+
+        cancelView.setOnClickListener {
+            dialog.cancel()
+        }
+        confirmView.setOnClickListener {
+            settingsStore.skipCashReturnHint = skipHintCheckBox.isChecked
+            confirmed = true
+            dialog.dismiss()
+        }
+        dialog.setOnCancelListener {
+            if (!confirmed) {
+                updateCashReturnChecked(false)
+            }
+        }
+        dialog.setOnShowListener {
+            dialog.window?.apply {
+                setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                setLayout(
+                    (resources.displayMetrics.widthPixels * CASH_RETURN_DIALOG_WIDTH_RATIO).toInt(),
+                    WindowManager.LayoutParams.WRAP_CONTENT
+                )
+            }
+        }
+        dialog.show()
+    }
+
+    private fun toggleSubmitMenu() {
+        val currentPopup = submitMenuPopup
+        if (currentPopup?.isShowing == true) {
+            currentPopup.dismiss()
+            return
+        }
+        showSubmitMenuPopup()
+    }
+
+    private fun showSubmitMenuPopup() {
+        val popupView = layoutInflater.inflate(R.layout.popup_sell_submit_options, null, false)
+        val cashView = popupView.findViewById<TextView>(R.id.psso_tv_cash)
+        val popupWidth = resources.getDimensionPixelSize(R.dimen.dp_88)
+        val popup = PopupWindow(
+            popupView,
+            popupWidth,
+            WindowManager.LayoutParams.WRAP_CONTENT,
+            true
+        )
+        popup.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        popup.isOutsideTouchable = true
+        cashView.setOnClickListener {
+            popup.dismiss()
+            submitSale()
+        }
+        popup.setOnDismissListener {
+            if (submitMenuPopup === popup) {
+                submitMenuPopup = null
+            }
+        }
+        submitMenuPopup = popup
+        popup.showAsDropDown(
+            rightView,
+            rightView.width - popupWidth,
+            0
+        )
+    }
+
+    private fun deleteAllGoods() {
         goodsList.clear()
         refreshGoodsTable()
         toast(getString(R.string.sell_delete_all_success))
+    }
+
+    private fun fillOnlinePayCode(payCode: String) {
+        showOnlinePayDialog(payCode = payCode)
+    }
+
+    private fun showOnlinePayDialog(
+        resetInput: Boolean = false,
+        openScannerAfterShow: Boolean = false,
+        payCode: String? = null
+    ) {
+        if (goodsList.isEmpty()) {
+            toast(getString(R.string.sell_submit_empty))
+            return
+        }
+        val dialog = onlinePayDialog ?: createOnlinePayDialog().also {
+            onlinePayDialog = it
+        }
+        bindOnlinePayDialog(resetInput = resetInput, payCode = payCode)
+        if (!dialog.isShowing && !isFinishing && !isDestroyed) {
+            dialog.show()
+            dialog.window?.apply {
+                setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                setLayout(
+                    (resources.displayMetrics.widthPixels * ONLINE_PAY_DIALOG_WIDTH_RATIO).toInt(),
+                    WindowManager.LayoutParams.WRAP_CONTENT
+                )
+            }
+        }
+        if (openScannerAfterShow) {
+            rootView.post {
+                if (!isFinishing && !isDestroyed && dialog.isShowing) {
+                    scanPayLauncher.launch(ScanPayActivity.createIntent(this))
+                }
+            }
+        }
+    }
+
+    private fun createOnlinePayDialog(): AlertDialog {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_sell_online_pay, null, false)
+        val orderAmountView = dialogView.findViewById<TextView>(R.id.dsop_tv_order_amount)
+        val receivableAmountView =
+            dialogView.findViewById<TextView>(R.id.dsop_tv_receivable_amount)
+        val payCodeEdit = dialogView.findViewById<AppCompatEditText>(R.id.dsop_et_pay_code)
+        val closeButton = dialogView.findViewById<Button>(R.id.dsop_btn_close)
+        val payButton = dialogView.findViewById<Button>(R.id.dsop_btn_pay)
+        val scanActionView = dialogView.findViewById<View>(R.id.dsop_iv_scan)
+
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(false)
+            .create()
+
+        onlinePayOrderAmountView = orderAmountView
+        onlinePayReceivableAmountView = receivableAmountView
+        onlinePayCodeEdit = payCodeEdit
+
+        closeButton.setOnClickListener { dialog.dismiss() }
+        payButton.setOnClickListener { submitOnlinePay() }
+        scanActionView.setOnClickListener {
+            if (goodsList.isEmpty()) {
+                toast(getString(R.string.sell_submit_empty))
+                return@setOnClickListener
+            }
+            scanPayLauncher.launch(ScanPayActivity.createIntent(this))
+        }
+        dialog.setOnDismissListener {
+            onlinePayDialog = null
+            onlinePayOrderAmountView = null
+            onlinePayReceivableAmountView = null
+            onlinePayCodeEdit = null
+        }
+        return dialog
+    }
+
+    private fun bindOnlinePayDialog(resetInput: Boolean, payCode: String?) {
+        val amountText = buildPayAmount(goodsList.sumOf { it.amount })
+        onlinePayOrderAmountView?.text = amountText
+        onlinePayReceivableAmountView?.text = amountText
+        if (resetInput) {
+            onlinePayCodeEdit?.setText("")
+        }
+        if (payCode != null) {
+            onlinePayCodeEdit?.setText(payCode)
+            onlinePayCodeEdit?.setSelection(payCode.length)
+        }
+    }
+
+    private fun buildPayAmount(totalAmount: Double): String {
+        return getString(
+            R.string.sell_online_pay_amount_value,
+            payAmountFormatter.format(totalAmount)
+        )
+    }
+
+    private fun submitOnlinePay() {
+        val payCode = onlinePayCodeEdit?.text?.toString()?.trim().orEmpty()
+        if (payCode.isBlank()) {
+            toast(getString(R.string.sell_pay_code_empty))
+            onlinePayCodeEdit?.requestFocus()
+            return
+        }
+        onlinePayDialog?.dismiss()
+        showLoadingDialog(
+            getString(R.string.sell_pay_loading),
+            getString(R.string.sell_pay_loading_hint)
+        )
+        rootView.postDelayed({
+            if (isFinishing || isDestroyed) {
+                return@postDelayed
+            }
+            hideLoadingDialog()
+            goodsList.clear()
+            refreshGoodsTable()
+            toast(
+                getString(
+                    R.string.sell_pay_success,
+                    payCode.takeLast(6)
+                )
+            )
+        }, SUBMIT_DELAY)
     }
 
     private fun submitSale() {
@@ -310,7 +571,17 @@ class SellActivity : AppCompatActivity() {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
+    private fun updateCashReturnChecked(checked: Boolean) {
+        ignoreCashReturnChange = true
+        cashReturnCheckBox.isChecked = checked
+        ignoreCashReturnChange = false
+    }
+
     override fun onDestroy() {
+        submitMenuPopup?.dismiss()
+        submitMenuPopup = null
+        onlinePayDialog?.dismiss()
+        onlinePayDialog = null
         hideLoadingDialog()
         loadingDialog = null
         super.onDestroy()
@@ -321,5 +592,7 @@ class SellActivity : AppCompatActivity() {
         private const val SUBMIT_DELAY = 650L
         private const val DEFAULT_TRAIN_NO = "DJ5902"
         private const val DEFAULT_ROAD_DATE = "20260408"
+        private const val CASH_RETURN_DIALOG_WIDTH_RATIO = 0.9f
+        private const val ONLINE_PAY_DIALOG_WIDTH_RATIO = 0.82f
     }
 }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@drawable/bg_update_dialog" android:padding="@dimen/dp_10" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minWidth="@dimen/dp_300"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:layout_gravity="right" android:id="@id/tv_close" android:padding="@dimen/dp_5" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="关闭" />
+    <TextView android:textSize="@dimen/text_16" android:textStyle="bold" android:gravity="center" android:id="@id/tv_title" android:padding="@dimen/dp_5" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    <TextView android:textSize="@dimen/text_14" android:gravity="left" android:id="@id/tv_update_content" android:padding="@dimen/dp_5" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="25.0dip" android:layout_marginRight="25.0dip" />
+    <TextView android:textSize="@dimen/text_14" android:textColor="@color/red" android:gravity="left" android:id="@id/tv_update_notice" android:padding="@dimen/dp_5" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="25.0dip" android:layout_marginRight="25.0dip" android:text="注：更新后请重启APP" />
+    <TextView android:textSize="@dimen/text_14" android:textColor="@color/red" android:gravity="left" android:id="@id/tv_update_tip" android:padding="@dimen/dp_5" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="25.0dip" android:layout_marginRight="25.0dip" />
+    <TextView android:textSize="@dimen/text_16" android:textColor="#ffffffff" android:gravity="center" android:id="@id/tv_update" android:background="@drawable/bg_tv_update" android:padding="@dimen/dp_5" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dp_20" android:layout_marginTop="@dimen/dp_10" android:layout_marginRight="@dimen/dp_20" android:text="更新" />
+</LinearLayout>

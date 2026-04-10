@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:id="@id/root" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="@dimen/bill_table_grid_igh"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView android:id="@id/iaqbl_tv_goods_code" android:visibility="gone" android:layout_width="@dimen/dp_80" android:layout_height="fill_parent" android:text="商品编码" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:visibility="gone" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/iaqbl_tv_goods_name" android:layout_width="0.0dip" android:layout_height="fill_parent" android:text="商品名称" android:layout_weight="1.0" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/iaqbl_tv_goods_price" android:layout_width="@dimen/dp_50" android:layout_height="fill_parent" android:text="单价" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/iaqbl_tv_goods_from_stock" android:layout_width="@dimen/dp_39" android:layout_height="fill_parent" android:text="库领" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/iaqbl_tv_goods_add" android:layout_width="@dimen/dp_39" android:layout_height="fill_parent" android:text="补货" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/iaqbl_tv_goods_transfer_in" android:layout_width="@dimen/dp_40" android:layout_height="fill_parent" android:text="转入" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/iaqbl_tv_goods_transfer_out" android:layout_width="@dimen/dp_39" android:layout_height="fill_parent" android:text="转出" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/iaqbl_tv_goods_return" android:layout_width="@dimen/dp_39" android:layout_height="fill_parent" android:text="退库" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/iaqbl_tv_goods_scrapped" android:layout_width="@dimen/dp_39" android:layout_height="fill_parent" android:text="报废" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/iaqbl_tv_goods_lost" android:layout_width="@dimen/dp_40" android:layout_height="fill_parent" android:text="丢失" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/iaqbl_tv_goods_sale_out" android:layout_width="@dimen/dp_39" android:layout_height="fill_parent" android:text="对外" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/iaqbl_tv_goods_sale_in" android:layout_width="@dimen/dp_39" android:layout_height="fill_parent" android:text="对内" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/iaqbl_tv_goods_sale_12306" android:layout_width="@dimen/dp_40" android:layout_height="fill_parent" android:text="12306" style="@style/table_grid_text_new" />
+</LinearLayout>

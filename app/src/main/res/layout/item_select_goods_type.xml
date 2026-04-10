@@ -6,10 +6,10 @@
     android:background="@color/lightgray"
     android:gravity="center"
     android:maxLines="2"
-    android:minHeight="@dimen/dp_64"
-    android:paddingStart="@dimen/dp_4"
-    android:paddingTop="@dimen/dp_10"
-    android:paddingEnd="@dimen/dp_4"
-    android:paddingBottom="@dimen/dp_10"
+    android:minHeight="@dimen/dp_56"
+    android:paddingStart="@dimen/dp_3"
+    android:paddingTop="@dimen/dp_8"
+    android:paddingEnd="@dimen/dp_3"
+    android:paddingBottom="@dimen/dp_8"
     android:textColor="@color/black"
-    android:textSize="@dimen/text_16" />
+    android:textSize="@dimen/text_14" />

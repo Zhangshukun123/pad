@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple android:color="@color/ripple_color"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <selector>
+            <item android:state_pressed="true">
+                <layer-list>
+                    <item android:left="@dimen/dp_10" android:right="@dimen/dp_10">
+                        <shape>
+                            <solid android:color="#ff73c047" />
+                        </shape>
+                    </item>
+                    <item android:bottom="@dimen/dp_1">
+                        <shape>
+                            <solid android:color="#ffd5d4d4" />
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+            <item android:state_pressed="false">
+                <layer-list>
+                    <item>
+                        <shape>
+                            <solid android:color="@color/divider_color_gray" />
+                        </shape>
+                    </item>
+                    <item android:bottom="@dimen/dp_1">
+                        <shape>
+                            <solid android:color="#ffffffff" />
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+        </selector>
+    </item>
+</ripple>

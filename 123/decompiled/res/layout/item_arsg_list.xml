@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:id="@id/root" android:background="@drawable/bg_white_solid_green_border_round" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="@dimen/dp_40"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView android:gravity="center" android:id="@id/ial_tv_goods_type" android:layout_width="@dimen/dp_75" android:layout_height="fill_parent" android:text="类型" style="@style/default_text" />
+    <TextView android:gravity="center_vertical" android:id="@id/ial_tv_goods_name" android:layout_width="0.0dip" android:layout_height="fill_parent" android:text="商品名称" android:layout_weight="1.0" style="@style/default_text" />
+    <TextView android:gravity="center" android:id="@id/ial_tv_goods_warehouse_stock" android:visibility="gone" android:layout_width="@dimen/dp_45" android:layout_height="fill_parent" android:text="库存" style="@style/default_text" />
+    <TextView android:gravity="center" android:id="@id/ial_tv_train_stock" android:visibility="gone" android:layout_width="@dimen/dp_45" android:layout_height="fill_parent" android:text="车存" style="@style/default_text" />
+    <TextView android:gravity="center" android:id="@id/ial_tv_birthday" android:visibility="gone" android:layout_width="@dimen/dp_65" android:layout_height="fill_parent" android:text="生产日期" style="@style/default_text" />
+    <TextView android:textStyle="bold" android:gravity="center" android:id="@id/ial_tv_add_stock" android:layout_width="@dimen/dp_45" android:layout_height="fill_parent" android:text="数量" style="@style/default_text" />
+</LinearLayout>

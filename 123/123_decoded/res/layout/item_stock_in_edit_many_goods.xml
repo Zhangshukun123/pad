@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:id="@id/root" android:background="@drawable/bg_white_top_black_line" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="@dimen/dp_40"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView android:id="@id/tv_code" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="3.0" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintRight_toLeftOf="@id/tv_name" app:layout_constraintTop_toTopOf="parent" style="@style/table_grid_text" />
+    <TextView android:id="@id/tv_name" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="4.0" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintLeft_toRightOf="@id/tv_code" app:layout_constraintRight_toLeftOf="@id/tv_company_name" app:layout_constraintTop_toTopOf="parent" style="@style/table_grid_text" />
+</LinearLayout>

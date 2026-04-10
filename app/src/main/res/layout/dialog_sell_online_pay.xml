@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_loading_dialog"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/dp_16"
+    android:paddingTop="@dimen/dp_12"
+    android:paddingEnd="@dimen/dp_16"
+    android:paddingBottom="@dimen/dp_12">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/sell_online_pay_title"
+        android:textColor="@color/light_black"
+        android:textSize="@dimen/text_16" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_16"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sell_online_pay_order_amount"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/text_14" />
+
+        <TextView
+            android:id="@+id/dsop_tv_order_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_8"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_14"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_8"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sell_online_pay_receivable_amount"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/text_14" />
+
+        <TextView
+            android:id="@+id/dsop_tv_receivable_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_8"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_14"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginTop="@dimen/dp_12"
+        android:background="@drawable/bg_online_pay_input">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/dsop_et_pay_code"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:gravity="center_vertical"
+            android:hint="@string/sell_online_pay_code_hint"
+            android:imeOptions="actionDone"
+            android:maxLines="1"
+            android:paddingStart="@dimen/dp_8"
+            android:paddingEnd="@dimen/dp_40"
+            android:textColor="@color/light_black"
+            android:textColorHint="@color/explain_text_color_1"
+            android:textSize="@dimen/text_14" />
+
+        <ImageView
+            android:id="@+id/dsop_iv_scan"
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="@dimen/dp_8"
+            android:contentDescription="@string/sell_camera_pay"
+            android:padding="@dimen/dp_2"
+            android:src="@mipmap/ic_scan_small" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_12"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/dsop_btn_close"
+            style="@style/button_1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_high"
+            android:layout_weight="1"
+            android:text="@string/action_close" />
+
+        <View
+            android:layout_width="@dimen/dp_10"
+            android:layout_height="1dp" />
+
+        <Button
+            android:id="@+id/dsop_btn_pay"
+            style="@style/button_1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_high"
+            android:layout_weight="1"
+            android:text="@string/sell_online_pay_action" />
+    </LinearLayout>
+
+</LinearLayout>

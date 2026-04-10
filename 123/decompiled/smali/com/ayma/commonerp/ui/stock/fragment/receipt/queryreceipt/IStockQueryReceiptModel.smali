@@ -1,0 +1,139 @@
+.class public interface abstract Lcom/ayma/commonerp/ui/stock/fragment/receipt/queryreceipt/IStockQueryReceiptModel;
+.super Ljava/lang/Object;
+.source "IStockQueryReceiptModel.java"
+
+# interfaces
+.implements Lcom/ayma/commonerp/base/IBaseModel;
+
+
+# virtual methods
+.method public abstract fetchOutTrain(Ljava/util/TreeMap;Lcom/ayma/base/mvp/ModelCallBack;)V
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/util/TreeMap<",
+            "Ljava/lang/String;",
+            "Ljava/lang/String;",
+            ">;",
+            "Lcom/ayma/base/mvp/ModelCallBack;",
+            ")V"
+        }
+    .end annotation
+.end method
+
+.method public abstract fetchReceipt(Ljava/util/TreeMap;Lcom/ayma/base/mvp/ModelParamCallBack;)V
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/util/TreeMap<",
+            "Ljava/lang/String;",
+            "Ljava/lang/String;",
+            ">;",
+            "Lcom/ayma/base/mvp/ModelParamCallBack<",
+            "Ljava/util/List<",
+            "Lcom/ayma/commonerp/bean/StockReceiptBean;",
+            ">;>;)V"
+        }
+    .end annotation
+.end method
+
+.method public abstract fetchReceipt(Ljava/util/TreeMap;Ljava/lang/String;Lcom/ayma/base/mvp/ModelCallBack;)V
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/util/TreeMap<",
+            "Ljava/lang/String;",
+            "Ljava/lang/String;",
+            ">;",
+            "Ljava/lang/String;",
+            "Lcom/ayma/base/mvp/ModelCallBack;",
+            ")V"
+        }
+    .end annotation
+.end method
+
+.method public abstract fetchStoreList(Ljava/util/TreeMap;Lcom/ayma/base/mvp/ModelCallBack;)V
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/util/TreeMap<",
+            "Ljava/lang/String;",
+            "Ljava/lang/String;",
+            ">;",
+            "Lcom/ayma/base/mvp/ModelCallBack;",
+            ")V"
+        }
+    .end annotation
+.end method
+
+.method public abstract fetchTrainMembers(Ljava/util/TreeMap;Lcom/ayma/base/mvp/ModelParamCallBack;)V
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/util/TreeMap<",
+            "Ljava/lang/String;",
+            "Ljava/lang/String;",
+            ">;",
+            "Lcom/ayma/base/mvp/ModelParamCallBack<",
+            "Ljava/util/List<",
+            "Lcom/ayma/commonerp/bean/TrainMemberBean;",
+            ">;>;)V"
+        }
+    .end annotation
+.end method
+
+.method public abstract getStatue(Ljava/lang/String;)Ljava/lang/String;
+.end method
+
+.method public abstract getStoreCode(Ljava/lang/String;)Ljava/lang/String;
+.end method
+
+.method public abstract getTrain(Ljava/lang/String;)Lcom/ayma/commonerp/bean/StockTrainItem;
+.end method
+
+.method public abstract getTrainId(Ljava/lang/String;)Ljava/lang/String;
+.end method
+
+.method public abstract getType(Ljava/lang/String;)Ljava/lang/String;
+.end method
+
+.method public abstract queryTrain(Ljava/lang/String;Lcom/ayma/base/mvp/ModelParamCallBack;)V
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/lang/String;",
+            "Lcom/ayma/base/mvp/ModelParamCallBack<",
+            "Ljava/util/List<",
+            "Ljava/lang/String;",
+            ">;>;)V"
+        }
+    .end annotation
+.end method
+
+.method public abstract stockSignOutForTrain(Ljava/util/TreeMap;Lcom/ayma/base/mvp/ModelCallBack;)V
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/util/TreeMap<",
+            "Ljava/lang/String;",
+            "Ljava/lang/String;",
+            ">;",
+            "Lcom/ayma/base/mvp/ModelCallBack;",
+            ")V"
+        }
+    .end annotation
+.end method
+
+.method public abstract updateReceiptStatue(Ljava/lang/String;Ljava/lang/String;ZLcom/ayma/base/mvp/ModelParamCallBack;)V
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/lang/String;",
+            "Ljava/lang/String;",
+            "Z",
+            "Lcom/ayma/base/mvp/ModelParamCallBack<",
+            "Ljava/lang/Integer;",
+            ">;)V"
+        }
+    .end annotation
+.end method

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/dp_10">
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_5"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_15"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="金额："
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_14"
+        app:layout_constraintBottom_toBottomOf="@id/et_money"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/et_money" />
+
+    <com.ayma.base.widget.ClearEditText
+        android:id="@+id/et_money"
+        style="@style/edittext_1"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/edittext_high"
+        android:layout_marginTop="@dimen/dp_10"
+        android:digits=".0123456789"
+        android:gravity="center_vertical"
+        android:hint="请输入转线上金额"
+        android:inputType="numberDecimal"
+        android:paddingStart="@dimen/dp_5"
+        android:textSize="@dimen/text_14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tv_1"
+        app:layout_constraintTop_toBottomOf="@id/tv_content" />
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/button_long_high"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@drawable/bg_green"
+        android:gravity="center"
+        android:padding="@dimen/dp_5"
+        android:text="取消"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_13"
+        app:layout_constraintEnd_toStartOf="@id/btn_commit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_money" />
+
+    <Button
+        android:id="@+id/btn_commit"
+        style="@style/button_1"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/button_long_high"
+        android:layout_marginStart="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@drawable/bg_green"
+        android:text="确定"
+        android:textSize="@dimen/text_13"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_cancel"
+        app:layout_constraintTop_toBottomOf="@id/et_money" />
+</androidx.constraintlayout.widget.ConstraintLayout>

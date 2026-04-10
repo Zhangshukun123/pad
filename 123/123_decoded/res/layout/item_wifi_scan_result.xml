@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:id="@id/root" android:background="@drawable/color_text" android:padding="@dimen/dp_8" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView android:textSize="@dimen/text_15" android:textColor="@color/light_black" android:id="@id/tv_scan_wifi_name" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="WiFi1" app:layout_constraintEnd_toStartOf="@id/scan_wifi_pwd" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+    <ImageView android:id="@id/scan_wifi_pwd" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@mipmap/ic_lock" android:layout_marginEnd="@dimen/dp_5" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toStartOf="@id/scan_wifi_photo" app:layout_constraintTop_toTopOf="parent" />
+    <ImageView android:id="@id/scan_wifi_photo" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_baseline_wifi_24" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

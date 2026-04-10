@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:id="@id/root" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="@dimen/bill_table_grid_igh"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView android:gravity="center" android:id="@id/tv_goods_code" android:layout_width="@dimen/dp_85" android:layout_height="fill_parent" android:text="商品编码" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:gravity="center" android:id="@id/tv_goods_name" android:layout_width="0.0dip" android:layout_height="fill_parent" android:text="商品名称" android:layout_weight="1.0" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:gravity="center" android:id="@id/tv_goods_count" android:layout_width="@dimen/dp_60" android:layout_height="fill_parent" android:text="数量" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:gravity="center" android:id="@id/tv_goods_price" android:layout_width="@dimen/dp_60" android:layout_height="fill_parent" android:text="单价" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/tv_goods_total_money" android:layout_width="@dimen/dp_60" android:layout_height="fill_parent" android:text="金额" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/tv_sell_type" android:layout_width="@dimen/dp_70" android:layout_height="fill_parent" android:text="销售类型" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/tv_pay_type" android:layout_width="@dimen/dp_70" android:layout_height="fill_parent" android:text="支付类型" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/tv_sell_time" android:layout_width="@dimen/dp_80" android:layout_height="fill_parent" android:text="销售时间" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+    <TextView android:id="@id/tv_order_type" android:layout_width="@dimen/dp_50" android:layout_height="fill_parent" android:text="订单类型" style="@style/table_grid_text_new" />
+    <View android:background="@color/divider_color_gray" android:layout_width="@dimen/dp_1" android:layout_height="fill_parent" />
+</LinearLayout>

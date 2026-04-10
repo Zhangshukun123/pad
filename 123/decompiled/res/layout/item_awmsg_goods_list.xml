@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:id="@id/root" android:background="@drawable/bg_white" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView android:textSize="@dimen/text_16" android:id="@id/i_awmsg_tv_type" android:background="@color/lightgray" android:padding="@dimen/dp_5" android:layout_width="fill_parent" android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout android:background="@drawable/bg_green_border_round" android:padding="@dimen/dp_3" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dp_5" android:layout_marginTop="@dimen/dp_5" android:layout_marginRight="@dimen/dp_3" app:layout_constraintTop_toBottomOf="@id/i_awmsg_tv_type">
+        <TextView android:textSize="@dimen/text_16" android:textColor="@color/black" android:id="@id/i_awmsg_tv_name" android:layout_width="0.0dip" android:layout_height="wrap_content" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintRight_toLeftOf="@id/i_awmsg_cb_select" app:layout_constraintTop_toTopOf="parent" />
+        <CheckBox android:id="@id/i_awmsg_cb_select" android:layout_width="wrap_content" android:layout_height="wrap_content" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintRight_toRightOf="parent" app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

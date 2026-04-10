@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:background="@drawable/shape_16dp" android:paddingTop="@dimen/dp_6" android:paddingBottom="@dimen/dp_6" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="@dimen/dp_6" android:paddingStart="@dimen/dp_12" android:paddingEnd="@dimen/dp_12"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView android:layout_gravity="center_vertical" android:id="@id/istn_tv_train_no" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="测试" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" style="@style/text_ui" />
+    <ImageView android:layout_gravity="center_vertical" android:id="@id/istn_iv_delet" android:layout_width="@dimen/dp_20" android:layout_height="@dimen/dp_20" android:src="@drawable/ic_close" android:layout_marginStart="@dimen/dp_5" />
+</LinearLayout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:padding="@dimen/dp_10" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView android:textSize="@dimen/text_16" android:textColor="@color/black" android:gravity="start" android:id="@id/tv_content" android:padding="@dimen/dp_5" android:layout_width="fill_parent" android:layout_height="wrap_content" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintTop_toTopOf="parent" />
+    <com.google.android.material.textfield.TextInputLayout android:id="@id/til_pwd" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/dp_10" app:hintEnabled="false" app:layout_constraintTop_toBottomOf="@id/tv_content">
+        <com.ayma.base.widget.ClearEditText android:id="@id/et_pwd" android:paddingLeft="@dimen/dp_5" android:layout_width="fill_parent" android:layout_height="@dimen/dp_35" android:hint="请输入WiFi密码进行连接" android:inputType="textPassword" app:layout_constraintRight_toRightOf="parent" style="@style/edittext_1" />
+    </com.google.android.material.textfield.TextInputLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_bottom_green_line"
+    android:padding="@dimen/dp_8">
+
+    <TextView
+        android:id="@+id/tvOrderCodeHint"
+        style="@style/default_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="订单号："
+        app:layout_constraintBottom_toBottomOf="@id/tvOrderCode"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvOrderCode" />
+
+    <TextView
+        android:id="@+id/tvOrderCode"
+        style="@style/text_ui"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dp_2"
+        android:paddingBottom="@dimen/dp_2"
+        app:layout_constraintEnd_toStartOf="@id/tvRefund"
+        app:layout_constraintStart_toEndOf="@id/tvOrderCodeHint"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvRefund"
+        android:layout_width="@dimen/dp_56"
+        android:layout_height="@dimen/dp_28"
+        android:background="@drawable/bg_button_radius"
+        android:gravity="center"
+        android:text="退款"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvOrderDateHint"
+        style="@style/default_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
+        android:text="订单日期："
+        app:layout_constraintBottom_toBottomOf="@id/tvOrderDate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvOrderDate" />
+
+    <TextView
+        android:id="@+id/tvOrderDate"
+        style="@style/text_ui"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvOrderDateHint"
+        app:layout_constraintTop_toBottomOf="@id/tvOrderCode" />
+
+    <TextView
+        android:id="@+id/tvOrderAmountHint"
+        style="@style/default_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
+        android:text="订单金额："
+        app:layout_constraintBottom_toBottomOf="@id/tvOrderAmount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvOrderAmount" />
+
+    <TextView
+        android:id="@+id/tvOrderAmount"
+        style="@style/text_ui"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvOrderAmountHint"
+        app:layout_constraintTop_toBottomOf="@id/tvOrderDate" />
+
+    <TextView
+        android:id="@+id/tvOrderRefundStateHint"
+        style="@style/default_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
+        android:text="退款状态："
+        app:layout_constraintBottom_toBottomOf="@id/tvOrderRefundState"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvOrderRefundState" />
+
+    <TextView
+        android:id="@+id/tvOrderRefundState"
+        style="@style/text_ui"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvOrderRefundStateHint"
+        app:layout_constraintTop_toBottomOf="@id/tvOrderAmount" />
+
+    <TextView
+        android:id="@+id/tvOrderPayChannelHint"
+        style="@style/default_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
+        android:text="支付渠道："
+        app:layout_constraintBottom_toBottomOf="@id/tvOrderPayChannel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvOrderPayChannel" />
+
+    <TextView
+        android:id="@+id/tvOrderPayChannel"
+        style="@style/text_ui"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvOrderPayChannelHint"
+        app:layout_constraintTop_toBottomOf="@id/tvOrderRefundState" />
+
+    <TextView
+        android:id="@+id/tvOrderDetailHint"
+        style="@style/default_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
+        android:text="订单明细："
+        app:layout_constraintBottom_toBottomOf="@id/tvOrderDetail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvOrderDetail" />
+
+    <TextView
+        android:id="@+id/tvOrderDetail"
+        style="@style/text_ui"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
+        android:paddingBottom="@dimen/dp_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvOrderDetailHint"
+        app:layout_constraintTop_toBottomOf="@id/tvOrderPayChannel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

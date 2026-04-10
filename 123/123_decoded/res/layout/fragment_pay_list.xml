@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:id="@id/sfw_cl_root" android:background="@drawable/bg_gray_border_white_solid" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.appcompat.widget.LinearLayoutCompat android:gravity="center" android:id="@id/sfw_ll_tip" android:padding="@dimen/dp_3" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent">
+        <TextView android:background="@drawable/bg_blue_solid_round" android:layout_width="@dimen/dp_10" android:layout_height="@dimen/dp_10" />
+        <TextView android:textSize="@dimen/text_10" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dp_2" android:text="支付中" />
+        <TextView android:background="@drawable/bg_green_solid_round" android:layout_width="@dimen/dp_10" android:layout_height="@dimen/dp_10" android:layout_marginLeft="@dimen/dp_5" />
+        <TextView android:textSize="@dimen/text_10" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dp_2" android:text="支付完成" />
+        <TextView android:background="@drawable/bg_red_solid_round" android:layout_width="@dimen/dp_10" android:layout_height="@dimen/dp_10" android:layout_marginLeft="@dimen/dp_5" />
+        <TextView android:textSize="@dimen/text_10" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dp_2" android:text="支付失败" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.recyclerview.widget.RecyclerView android:id="@id/sfw_rv_pay_list" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="0.0dip" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@id/sfw_ll_tip" />
+    <TextView android:gravity="center" android:id="@id/sfw_tv_no_data" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="暂无数据" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:compileSdkVersion="28" android:compileSdkVersionCodename="9" package="com.ayma.commonerp" platformBuildVersionCode="28" platformBuildVersionName="9">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.FLASHLIGHT"/>
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+    <application android:allowBackup="true" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:icon="@mipmap/ic_launcher" android:label="@string/app_name" android:name="com.ayma.commonerp.app.App" android:networkSecurityConfig="@xml/network_security_config" android:roundIcon="@mipmap/ic_launcher_round" android:supportsRtl="true" android:theme="@style/AppTheme">
+        <meta-data android:name="design_width_in_dp" android:value="411"/>
+        <meta-data android:name="design_height_in_dp" android:value="914"/>
+        <activity android:exported="false" android:name="com.ayma.commonerp.ui.activity.goodsoption.GoodsOptionActivity"/>
+        <activity android:name="com.ayma.commonerp.ui.activity.sellcounter.SellCounterActivity"/>
+        <activity android:name="com.ayma.commonerp.ui.stock.activity.main.StockMainActivity"/>
+        <activity android:name="com.ayma.commonerp.ui.activity.splash.SplashActivity" android:resizeableActivity="true" android:screenOrientation="portrait" android:theme="@style/ThemeSplash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.ayma.commonerp.ui.activity.download.DownloadActivity" android:screenOrientation="portrait"/>
+        <activity android:name="com.ayma.commonerp.ui.activity.login.LoginActivity" android:screenOrientation="portrait"/>
+        <activity android:name="com.ayma.commonerp.ui.activity.setting.SettingActivity" android:screenOrientation="portrait"/>
+        <activity android:name="com.ayma.commonerp.ui.activity.teamhandover.TeamHandoverActivity" android:screenOrientation="portrait"/>
+        <activity android:name="com.ayma.commonerp.ui.activity.scrapped.ScrappedActivity" android:screenOrientation="portrait"/>
+        <activity android:name="com.ayma.commonerp.ui.activity.menu.MenuActivity" android:screenOrientation="portrait"/>
+        <activity android:name="com.ayma.commonerp.ui.activity.onlinepay.OnlinePayActivity" android:screenOrientation="portrait"/>
+        <activity android:name="com.ayma.commonerp.ui.activity.queryreceipt.QueryReceiptActivity" android:screenOrientation="portrait"/>
+        <activity android:name="com.ayma.commonerp.ui.activity.querysell.QuerySellActivity" android:screenOrientation="landscape"/>
+        <activity android:name="com.ayma.commonerp.ui.activity.queryselldetail.QuerySellDetailActivity" android:screenOrientation="landscape"/>
+        <activity android:name="com.ayma.commonerp.ui.activity.querysellgetmoney.QuerySellGetMoneyActivity" android:screenOrientation="portrait"/>
+        <activity android:name="com.ayma.commonerp.ui.activity.queryteampickup.QueryTeamPickupActivity" android:screenOrientation="portrait"/>
+        <activity android:name="com.ayma.commonerp.ui.activity.queryunusualorder.QueryUnusualOrderActivity" android:screenOrientation="portrait"/>
+        <activity android:name="com.ayma.commonerp.ui.activity.querywarehouse.QueryWarehouseActivity" android:screenOrientation="portrait"/>
+        <activity android:name="com.ayma.commonerp.ui.activity.receiptselectgoods.ReceiptSelectGoodsActivity" android:screenOrientation="portrait"/>
+        <activity android:name="com.ayma.commonerp.ui.activity.replenishmentquotwarehouse.ReplenishmentQuotWarehouseActivity" android:screenOrientation="portrait"/>
+        <activity android:name="com.ayma.commonerp.ui.activity.revisepwd.RevisePasswordActivity" android:screenOrientation="portrait"/>
+        <activity android:name="com.ayma.commonerp.ui.activity.sellanalysis.SellAnalysisActivity" android:screenOrientation="landscape"/>
+        <activity android:name="com.ayma.commonerp.ui.activity.selectgoods.SelectGoodsActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name="com.ayma.commonerp.ui.activity.sell.sell.SellActivity" android:screenOrientation="portrait"/>
+        <activity android:name="com.ayma.commonerp.ui.activity.unupload.UnuploadActivity" android:screenOrientation="landscape"/>
+        <activity android:name="com.ayma.commonerp.ui.activity.offsizeadd.OffSiteAddActivity" android:screenOrientation="portrait"/>
+        <activity android:name="com.ayma.commonerp.ui.activity.onlinerefund.OnlineRefundActivity" android:screenOrientation="portrait"/>
+        <activity android:name="com.ayma.commonerp.ui.activity.sell12306.Sell12306Activity" android:screenOrientation="portrait"/>
+        <activity android:name="com.ayma.commonerp.ui.activity.invoicing.InvoicingActivity" android:screenOrientation="portrait"/>
+        <activity android:name="com.ayma.commonerp.ui.activity.querybill.QueryBillActivity" android:screenOrientation="landscape"/>
+        <activity android:name="com.ayma.commonerp.ui.activity.teamreturn.TeamReturnActivity" android:screenOrientation="portrait"/>
+        <activity android:exported="false" android:name="com.ayma.commonerp.ui.activity.sell.workmealwriteoff.WorkMealWriteOffActivity"/>
+        <activity android:exported="false" android:name="com.ayma.commonerp.ui.activity.sell.workmealwriteoff.selectgoods.WorkMealSelectGoodsActivity"/>
+        <activity android:exported="false" android:name="com.ayma.commonerp.ui.activity.queryorder.QueryOrderActivity"/>
+        <activity android:exported="false" android:name="com.ayma.commonerp.ui.activity.systemsetting.SystemSettingActivity"/>
+        <activity android:name="com.ayma.commonerp.ui.activity.queryreceiptdetails.QueryReceiptDetailsActivity" android:screenOrientation="landscape"/>
+        <provider android:authorities="com.ayma.commonerp.fileprovider" android:exported="false" android:grantUriPermissions="true" android:name="androidx.core.content.FileProvider">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"/>
+        </provider>
+        <service android:name="com.ayma.commonerp.service.uploaddata.UploadDataService"/>
+        <service android:name="com.ayma.commonerp.service.report.ReportService"/>
+        <activity android:configChanges="orientation|screenSize" android:name="com.yzq.zxinglibrary.android.CaptureActivity" android:screenOrientation="portrait" android:theme="@style/Theme.AppCompat.NoActionBar" android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <provider android:authorities="com.ayma.commonerp.autosize-init-provider" android:exported="false" android:multiprocess="true" android:name="me.jessyan.autosize.InitProvider"/>
+        <activity android:name="com.vondear.rxfeature.activity.ActivityScanerCode"/>
+        <activity android:name="com.vondear.rxfeature.activity.ActivityCodeTool"/>
+        <uses-library android:name="androidx.window.extensions" android:required="false"/>
+        <uses-library android:name="androidx.window.sidecar" android:required="false"/>
+        <activity android:enabled="false" android:exported="false" android:launchMode="singleInstance" android:name="com.google.android.play.core.missingsplits.PlayCoreMissingSplitsActivity" android:process=":playcore_missing_splits_activity" android:stateNotNeeded="true"/>
+        <activity android:exported="false" android:name="com.google.android.play.core.common.PlayCoreDialogWrapperActivity" android:stateNotNeeded="true" android:theme="@style/Theme.PlayCore.Transparent"/>
+        <service android:enabled="false" android:exported="true" android:name="com.google.android.play.core.assetpacks.AssetPackExtractionService">
+            <meta-data android:name="com.google.android.play.core.assetpacks.versionCode" android:value="11002"/>
+        </service>
+        <service android:enabled="false" android:exported="false" android:name="com.google.android.play.core.assetpacks.ExtractionForegroundService"/>
+    </application>
+</manifest>

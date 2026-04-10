@@ -1,12 +1,20 @@
 package com.ccv.pda
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputFilter
 import android.text.TextWatcher
+import android.view.KeyEvent
 import android.view.View
+import android.view.WindowManager
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -30,18 +38,26 @@ class SelectGoodsActivity : AppCompatActivity() {
     private lateinit var roadDateView: TextView
     private lateinit var searchEdit: ClearEditText
     private lateinit var typeRecyclerView: RecyclerView
-    private lateinit var currentTypeView: TextView
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private lateinit var goodsRecyclerView: RecyclerView
     private lateinit var emptyView: TextView
+    private lateinit var refreshLoadingView: View
     private lateinit var shopCarView: ImageView
     private lateinit var selectedCountView: TextView
     private lateinit var totalPriceView: TextView
     private lateinit var submitButton: Button
 
+    private lateinit var typeLayoutManager: LinearLayoutManager
+    private lateinit var goodsLayoutManager: LinearLayoutManager
+
     private val typeAdapter = SelectGoodsTypeAdapter(::handleCategorySelected)
-    private val goodsAdapter = SelectGoodsItemAdapter(::increaseGoodsCount, ::decreaseGoodsCount)
+    private val goodsAdapter = SelectGoodsItemAdapter(
+        ::showGoodsQuantityDialog,
+        ::increaseGoodsCount,
+        ::decreaseGoodsCount
+    )
     private val selectedCountMap = linkedMapOf<String, Int>()
+    private val firstPositionByCategory = linkedMapOf<String, Int>()
     private val formatter = DecimalFormat("0.0#")
 
     private var currentCategoryId: String =
@@ -60,7 +76,7 @@ class SelectGoodsActivity : AppCompatActivity() {
         initTitleBar()
         initRecyclerViews()
         initListeners()
-        renderGoods()
+        renderGoods(keepPosition = false)
         updateSummary()
     }
 
@@ -74,10 +90,10 @@ class SelectGoodsActivity : AppCompatActivity() {
         roadDateView = findViewById(R.id.aui_tv_train_date)
         searchEdit = findViewById(R.id.asg_et_search_condition)
         typeRecyclerView = findViewById(R.id.asg_rlv_type)
-        currentTypeView = findViewById(R.id.sga_tv_current_type)
         swipeRefreshLayout = findViewById(R.id.sga_srl)
         goodsRecyclerView = findViewById(R.id.sga_rlv_goods)
         emptyView = findViewById(R.id.sga_tv_empty)
+        refreshLoadingView = findViewById(R.id.sga_fl_refresh_loading)
         shopCarView = findViewById(R.id.sga_iv_shop_car)
         selectedCountView = findViewById(R.id.sga_tv_goods_count)
         totalPriceView = findViewById(R.id.sga_tv_goods_total_price)
@@ -109,23 +125,34 @@ class SelectGoodsActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerViews() {
-        typeRecyclerView.layoutManager = LinearLayoutManager(this)
+        typeLayoutManager = LinearLayoutManager(this)
+        goodsLayoutManager = LinearLayoutManager(this)
+
+        typeRecyclerView.layoutManager = typeLayoutManager
         typeRecyclerView.adapter = typeAdapter
         typeAdapter.items = FakeSellGoodsRepository.categories
         typeAdapter.selectedCategoryId = currentCategoryId
 
-        goodsRecyclerView.layoutManager = LinearLayoutManager(this)
+        goodsRecyclerView.layoutManager = goodsLayoutManager
         goodsRecyclerView.adapter = goodsAdapter
+        goodsRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                syncCategorySelectionByScroll()
+            }
+        })
 
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary)
+        swipeRefreshLayout.setOnChildScrollUpCallback { _, _ ->
+            goodsRecyclerView.canScrollVertically(-1) || typeRecyclerView.canScrollVertically(-1)
+        }
     }
 
     private fun initListeners() {
         leftView.setOnClickListener { finish() }
-        rightView.setOnClickListener { refreshGoods() }
+        rightView.setOnClickListener { refreshWholePage() }
         submitButton.setOnClickListener { submitSelection() }
         shopCarView.setOnClickListener { showSelectedGoodsDialog() }
-        swipeRefreshLayout.setOnRefreshListener { refreshGoods() }
+        swipeRefreshLayout.setOnRefreshListener { refreshWholePage() }
         searchEdit.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
 
@@ -133,7 +160,7 @@ class SelectGoodsActivity : AppCompatActivity() {
 
             override fun afterTextChanged(s: Editable?) {
                 keyword = s?.toString().orEmpty()
-                renderGoods()
+                renderGoods(keepPosition = false)
             }
         })
     }
@@ -141,54 +168,211 @@ class SelectGoodsActivity : AppCompatActivity() {
     private fun handleCategorySelected(category: FakeGoodsCategory) {
         currentCategoryId = category.id
         typeAdapter.selectedCategoryId = category.id
-        renderGoods()
+        val position = firstPositionByCategory[category.id]
+        if (position == null) {
+            toast(getString(R.string.select_goods_category_empty, category.name))
+            return
+        }
+        goodsLayoutManager.scrollToPositionWithOffset(position, 0)
+        scrollTypeListToCategory(category.id)
     }
 
-    private fun renderGoods() {
-        currentTypeView.text = FakeSellGoodsRepository.findCategory(currentCategoryId)?.name.orEmpty()
-        val goods = FakeSellGoodsRepository.goodsByCategory(currentCategoryId, keyword)
-        goodsAdapter.items = goods.map { template ->
-            SelectGoodsDisplayItem(
-                template = template,
-                count = selectedCountMap[template.code] ?: 0
-            )
+    private fun renderGoods(keepPosition: Boolean) {
+        val anchorPosition = if (keepPosition) {
+            goodsLayoutManager.findFirstVisibleItemPosition()
+        } else {
+            RecyclerView.NO_POSITION
         }
-        emptyView.visibility = if (goods.isEmpty()) View.VISIBLE else View.GONE
+        val items = buildDisplayItems(keyword)
+        goodsAdapter.items = items
+        emptyView.visibility = if (items.isEmpty()) View.VISIBLE else View.GONE
+
+        if (items.isEmpty()) {
+            return
+        }
+        if (!firstPositionByCategory.containsKey(currentCategoryId)) {
+            currentCategoryId = firstPositionByCategory.keys.first()
+        }
+        typeAdapter.selectedCategoryId = currentCategoryId
+        scrollTypeListToCategory(currentCategoryId)
+
+        if (keepPosition && anchorPosition != RecyclerView.NO_POSITION) {
+            goodsLayoutManager.scrollToPositionWithOffset(anchorPosition, 0)
+        }
     }
 
-    private fun refreshGoods() {
-        if (!swipeRefreshLayout.isRefreshing) {
-            swipeRefreshLayout.isRefreshing = true
+    private fun buildDisplayItems(keyword: String): List<SelectGoodsDisplayItem> {
+        val result = mutableListOf<SelectGoodsDisplayItem>()
+        firstPositionByCategory.clear()
+        FakeSellGoodsRepository.categories.forEach { category ->
+            val goods = FakeSellGoodsRepository.goodsByCategory(category.id, keyword)
+            if (goods.isEmpty()) {
+                return@forEach
+            }
+            firstPositionByCategory[category.id] = result.size
+            goods.forEachIndexed { index, template ->
+                result += SelectGoodsDisplayItem(
+                    template = template,
+                    count = selectedCountMap[template.code] ?: 0,
+                    headerTitle = if (index == 0) category.name else null
+                )
+            }
         }
+        return result
+    }
+
+    private fun syncCategorySelectionByScroll() {
+        val position = goodsLayoutManager.findFirstVisibleItemPosition()
+        if (position == RecyclerView.NO_POSITION) {
+            return
+        }
+        val item = goodsAdapter.items.getOrNull(position) ?: return
+        val visibleCategoryId = item.template.categoryId
+        if (visibleCategoryId == currentCategoryId) {
+            return
+        }
+        currentCategoryId = visibleCategoryId
+        typeAdapter.selectedCategoryId = visibleCategoryId
+        scrollTypeListToCategory(visibleCategoryId)
+    }
+
+    private fun scrollTypeListToCategory(categoryId: String) {
+        val position = FakeSellGoodsRepository.categories.indexOfFirst { it.id == categoryId }
+        if (position >= 0) {
+            typeLayoutManager.scrollToPositionWithOffset(position, 0)
+        }
+    }
+
+    private fun refreshWholePage() {
+        swipeRefreshLayout.isRefreshing = false
+        showRefreshLoading(true)
         rootView.postDelayed({
             if (isFinishing || isDestroyed) {
                 return@postDelayed
             }
             swipeRefreshLayout.isRefreshing = false
-            renderGoods()
+            showRefreshLoading(false)
+            searchEdit.setText("")
+            keyword = ""
+            currentCategoryId = firstPositionByCategory.keys.firstOrNull()
+                ?: FakeSellGoodsRepository.categories.firstOrNull()?.id.orEmpty()
+            typeAdapter.items = FakeSellGoodsRepository.categories
+            typeAdapter.selectedCategoryId = currentCategoryId
+            renderGoods(keepPosition = false)
+            goodsLayoutManager.scrollToPositionWithOffset(0, 0)
+            scrollTypeListToCategory(currentCategoryId)
+            updateSummary()
             toast(getString(R.string.select_goods_refresh_success))
         }, REFRESH_DELAY)
     }
 
+    private fun showRefreshLoading(show: Boolean) {
+        refreshLoadingView.visibility = if (show) View.VISIBLE else View.GONE
+    }
+
     private fun increaseGoodsCount(template: FakeGoodsTemplate) {
         val currentCount = selectedCountMap[template.code] ?: 0
-        if (currentCount >= template.stock) {
+        if (template.stock <= 0 || currentCount >= template.stock) {
             toast(getString(R.string.select_goods_stock_limit, template.name))
             return
         }
-        selectedCountMap[template.code] = currentCount + 1
-        renderGoods()
-        updateSummary()
+        applyGoodsCount(template, currentCount + 1)
     }
 
     private fun decreaseGoodsCount(template: FakeGoodsTemplate) {
         val currentCount = selectedCountMap[template.code] ?: 0
-        if (currentCount <= 1) {
+        if (currentCount <= 0) {
+            return
+        }
+        applyGoodsCount(template, currentCount - 1)
+    }
+
+    private fun showGoodsQuantityDialog(template: FakeGoodsTemplate) {
+        val currentCount = selectedCountMap[template.code] ?: 0
+        val dialogView = layoutInflater.inflate(R.layout.dialog_select_goods_quantity, null)
+        val titleText = dialogView.findViewById<TextView>(R.id.dsgq_tv_title)
+        val quantityInput = dialogView.findViewById<EditText>(R.id.dsgq_et_quantity)
+        val cancelButton = dialogView.findViewById<TextView>(R.id.dsgq_tv_cancel)
+        val confirmButton = dialogView.findViewById<TextView>(R.id.dsgq_tv_confirm)
+
+        titleText.text = getString(
+            R.string.select_goods_quantity_dialog_title,
+            template.name,
+            currentCount
+        )
+        quantityInput.filters = arrayOf(InputFilter.LengthFilter(MAX_QUANTITY_INPUT_LENGTH))
+        quantityInput.setText(currentCount.takeIf { it > 0 }?.toString().orEmpty())
+        quantityInput.setSelection(quantityInput.text?.length ?: 0)
+
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+
+        val submitAction = {
+            val inputValue = quantityInput.text?.toString()?.trim().orEmpty()
+            when {
+                inputValue.isEmpty() -> {
+                    toast(getString(R.string.select_goods_quantity_empty))
+                    quantityInput.requestFocus()
+                }
+
+                else -> {
+                    val quantity = inputValue.toIntOrNull()
+                    when {
+                        quantity == null || quantity < 0 -> {
+                            toast(getString(R.string.select_goods_quantity_invalid))
+                            quantityInput.requestFocus()
+                        }
+
+                        quantity > template.stock -> {
+                            toast(getString(R.string.select_goods_stock_limit, template.name))
+                            quantityInput.requestFocus()
+                        }
+
+                        else -> {
+                            applyGoodsCount(template, quantity)
+                            dialog.dismiss()
+                        }
+                    }
+                }
+            }
+        }
+
+        cancelButton.setOnClickListener { dialog.dismiss() }
+        confirmButton.setOnClickListener { submitAction() }
+        quantityInput.setOnEditorActionListener { _, actionId, event ->
+            if (
+                actionId == EditorInfo.IME_ACTION_DONE ||
+                (event?.keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP)
+            ) {
+                submitAction()
+                true
+            } else {
+                false
+            }
+        }
+        dialog.setOnShowListener {
+            dialog.window?.apply {
+                setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                setLayout(
+                    (resources.displayMetrics.widthPixels * DIALOG_WIDTH_RATIO).toInt(),
+                    WindowManager.LayoutParams.WRAP_CONTENT
+                )
+                setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
+            }
+            quantityInput.requestFocus()
+            showSoftKeyboard(quantityInput)
+        }
+        dialog.show()
+    }
+
+    private fun applyGoodsCount(template: FakeGoodsTemplate, count: Int) {
+        if (count <= 0) {
             selectedCountMap.remove(template.code)
         } else {
-            selectedCountMap[template.code] = currentCount - 1
+            selectedCountMap[template.code] = count
         }
-        renderGoods()
+        renderGoods(keepPosition = true)
         updateSummary()
     }
 
@@ -264,6 +448,13 @@ class SelectGoodsActivity : AppCompatActivity() {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
+    private fun showSoftKeyboard(target: View) {
+        target.post {
+            val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as? InputMethodManager
+            inputMethodManager?.showSoftInput(target, InputMethodManager.SHOW_IMPLICIT)
+        }
+    }
+
     companion object {
         const val EXTRA_SALE_TYPE_NAME = "sale_type_name"
         const val EXTRA_SELECTED_GOODS = "selected_goods"
@@ -271,6 +462,8 @@ class SelectGoodsActivity : AppCompatActivity() {
         private const val DEFAULT_TRAIN_NO = "DJ5902"
         private const val DEFAULT_ROAD_DATE = "20260408"
         private const val REFRESH_DELAY = 420L
+        private const val DIALOG_WIDTH_RATIO = 0.86f
+        private const val MAX_QUANTITY_INPUT_LENGTH = 5
 
         @Suppress("DEPRECATION")
         fun readSelectedGoods(intent: Intent?): ArrayList<FakeSellGood> {

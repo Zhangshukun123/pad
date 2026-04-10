@@ -10,6 +10,8 @@
     <color name="colorAccent">#FF73C047</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00000000</color>
+    <color name="black_24">#FF242424</color>
     <color name="button_long_background">#FF73C047</color>
     <color name="button_long_text">#FFF5F5F5</color>
     <color name="button_red_text">#FF242424</color>
@@ -23,6 +25,8 @@
     <color name="title_fence_text_white">#FFF5F5F5</color>
     <color name="title_small_text_color">#FF242424</color>
     <color name="transparent_blank_5">#66000000</color>
+    <color name="gray">#FF808080</color>
+    <color name="wheat">#FFF5C432</color>
     <color name="table_header_background">#FF73C047</color>
     <color name="table_header_text">#FF111111</color>
     <color name="table_title">#FF242424</color>
@@ -51,4 +55,5 @@
     <color name="red">#FFFF0006</color>
     <color name="lightgray">#FFDCDCDC</color>
     <color name="sgf_goods_item_price_text">#FFE0612E</color>
+    <color name="sale_analysis_row_error">#FFFFF0C4</color>
 </resources>

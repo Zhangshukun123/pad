@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<litepal>
+
+    <dbname value="commonerp_db" />
+    <list>
+        //用户资料表
+        <mapping class="com.ayma.commonerp.bean.UserDataBean" />
+        //车次表
+        <mapping class="com.ayma.commonerp.bean.TrainInfo" />
+        //交路表
+        <mapping class="com.ayma.commonerp.bean.CrossRoadDataBean" />
+
+        //商品数据表
+        <mapping class="com.ayma.commonerp.bean.GoodsInfoDtosBean" />
+        //商品价格表
+        <mapping class="com.ayma.commonerp.bean.GoodsPriceBean" />
+        //商品大类表
+        <mapping class="com.ayma.commonerp.bean.BigGoodsTypesBean" />
+        //商品小类表
+        <mapping class="com.ayma.commonerp.bean.SmallGoodsTypesBean" />
+        //商品供应商表
+        <mapping class="com.ayma.commonerp.bean.SuppliersBean" />
+
+        //销售记录表
+        <mapping class="com.ayma.commonerp.bean.SellDetailBean" />
+
+        //班组领料单表
+        <mapping class="com.ayma.commonerp.bean.TeamPickupBean" />
+        //班组资料表
+        <mapping class="com.ayma.commonerp.bean.TeamDataBean" />
+        //权限表
+        <mapping class="com.ayma.commonerp.bean.PermissionBean" />
+        //基础大类表
+        <mapping class="com.ayma.commonerp.bean.BaseDataBean" />
+        //基础小类表
+        <mapping class="com.ayma.commonerp.bean.BaseDataItem" />
+
+        //仓库商品表
+        <mapping class="com.ayma.commonerp.bean.StoreGoods" />
+        //商品-供应商联系表
+        <mapping class="com.ayma.commonerp.bean.GoodsSuppliers" />
+        //条码表
+        <mapping class="com.ayma.commonerp.bean.BarcodeBean" />
+        //签到信息表
+        <mapping class="com.ayma.commonerp.bean.SignIn" />
+        //库存表
+        <mapping class="com.ayma.commonerp.bean.WearhouseDataBean" />
+        //开店记录表
+        <mapping class="com.ayma.commonerp.bean.OpenShopBean" />
+        //sim卡信息记录表
+        <mapping class="com.ayma.commonerp.bean.SimCardInfo" />
+        <!--        库房入库单据表头-->
+        <mapping class="com.ayma.commonerp.bean.data.stock.in.StockReceiptInHead" />
+        <!--        库房入库单据表体-->
+        <mapping class="com.ayma.commonerp.bean.data.stock.in.StockReceiptInBody" />
+        <!--        出库单据表头-->
+        <mapping class="com.ayma.commonerp.bean.data.stock.out.StockReceiptOutHead" />
+        <!--        出库单据表体-->
+        <mapping class="com.ayma.commonerp.bean.data.stock.out.StockReceiptOutBody" />
+        <!--        出库单据模板表头-->
+        <mapping class="com.ayma.commonerp.bean.data.stock.out.StockOutTemplateInfoHead" />
+        <!--        出库单据模板表体-->
+        <mapping class="com.ayma.commonerp.bean.data.stock.out.StockOutTemplateInfoBody" />
+
+        <!--        仓库出乘车次表-->
+        <mapping class="com.ayma.commonerp.bean.StockTrainItem" />
+
+        <!--    仓库数据    -->
+        <mapping class="com.ayma.commonerp.bean.StoreListBean" />
+        <!--   库别数据     -->
+        <mapping class="com.ayma.commonerp.bean.StoreTypeListBean" />
+        <!--    供应商数据    -->
+        <mapping class="com.ayma.commonerp.bean.data.stock.in.SupplierBean" />
+        <!--        pda权限表-->
+        <mapping class="com.ayma.commonerp.bean.PdaPermissionBean" />
+
+    </list>
+
+    <version value="71" />
+
+</litepal>

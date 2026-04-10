@@ -1,0 +1,22 @@
+.class public interface abstract Lcom/billy/android/swipe/SmartSwipeRefresh$SmartSwipeRefreshFooter;
+.super Ljava/lang/Object;
+.source "SmartSwipeRefresh.java"
+
+# interfaces
+.implements Lcom/billy/android/swipe/SmartSwipeRefresh$RefreshView;
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lcom/billy/android/swipe/SmartSwipeRefresh;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x609
+    name = "SmartSwipeRefreshFooter"
+.end annotation
+
+
+# virtual methods
+.method public abstract setNoMoreData(Z)V
+.end method
